@@ -23,7 +23,7 @@ public class PassengerPlane extends AirPlane {
             Seat seat = new Seat();
             seat.seatNumber = i;
             seat.seatstatus = SeatStatus.FREE;
-            seats.put(i, seat)
+            seats.put(i, seat);
             
             if(i < nrOfSeats / 2){
                 seats.get(i).setPrice(firstPrice);
@@ -52,7 +52,7 @@ public class PassengerPlane extends AirPlane {
         if (seats.size() < nrOfSeats) { // Seats available
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
                 for (int i = 0; i < 5; i++) {
-                    if (seats.isEmpty() || seats.get(i) == null) { //empty seat found
+                    if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
@@ -65,7 +65,7 @@ public class PassengerPlane extends AirPlane {
                 }
             } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
-                    if (seats.isEmpty() || seats.get(i) == null) { //empty seat found
+                    if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
