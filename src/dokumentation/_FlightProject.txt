@@ -1,0 +1,85 @@
+Projekt 2. Java Advanced - FlightProject
+https://drive.google.com/drive/my-drive
+Java material | Project 2 | -FlightProject.pdf
+
+
+BookingSystem						Kent
+	has List of customers
+	has company
+	addCustomer()
+Company							Stefan
+	has List of Planes
+	has Money
+	buyPlane()
+	sellPlane()
+	getPlane()
+Money							Amirali
+	saldo	
+	income()
+	cost()
+Plane							Stefan
+	has List of Seats (5 first class + 5 economy class)
+	status = idle, takeoff, flight, landing, refuel
+	//reservSeat()
+	reserveSeat()
+	fly()
+	freeSeat()
+	freeAllSeats()
+Seat							Stefan
+	seatClass = First or Economy
+	seatNumber = 1-10
+	status = idle or Customer object
+	price = 20000kr or 5000kr
+	assignCustomer()
+	removeCustomer()
+Customer						Stefan
+	name
+	id
+	has Ticket
+	has FoodOrder
+	getName()
+	getSeat()
+	getMenu()
+	getFoodOrder()
+	orderFood(int menuItem)
+	payFood()
+Ticket							Amirali
+	Customer
+	Plane
+	Seat
+	price
+	expired
+FoodOrder
+	has Menu
+	has List of FoodItems from Menu (orderd food)
+	totalCost
+	payed
+	orderFood()
+	getMenu()
+	getTotalCost()
+	pay()
+	toString()
+Menu
+	has menu of FoodItems
+	getMenu()
+	getMenuItem(item)
+	toString()
+FoodItem
+	item
+	price
+	getItem()
+	getPrice()
+
+UI							Kent
+	Create a BookingSystem objekt (which has Customers and Company, Plane, Seats) 
+Actions:
+* Add Customer, name and seatClass	
+* Show Menu
+* Order Food
+* Pay Food
+* Show Customer
+* Show all Customers
+* Show planes
+* Show seats
+* Show Ticktes
+

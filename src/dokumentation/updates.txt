@@ -1,0 +1,4 @@
+Time                Name        Update 
+===============================================================================================                                         
+16-07-09, 14:24     Stefan      Added this document
+16-07-09, 14:25     Stefan      Addded bug document "bugs.doc" for bug reporting, in this folder
