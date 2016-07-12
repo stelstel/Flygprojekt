@@ -6,16 +6,16 @@ package flyace;
  */
 
 public class Seat {
-    Ticket ticket;
+ //   Ticket ticket;
     SeatClass seatclass;
     int seatNumber;
     SeatStatus seatstatus;
     double price;
     
     //****************** Constructors ******************************************
-    public Seat(Ticket ticket){
-        this.ticket = ticket;
-    }
+//    public Seat(Ticket ticket){
+//        this.ticket = ticket;
+//    }
     
     // Put customer in seat
     void assignCustomer(){

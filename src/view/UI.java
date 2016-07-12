@@ -5,7 +5,6 @@ import flyace.BookingSystem;
 import flyace.Customer;
 import flyace.SeatClass;
 import food.*;
-// JUst testing
 
 public class UI {
 
@@ -91,7 +90,7 @@ public class UI {
 					System.out.println("TODO:");
 					break;
 				case 3:
-					//TODO:
+					showAllCustomers();
 					System.out.println("TODO:");
 					break;
 				case 4:
@@ -178,9 +177,8 @@ public class UI {
 		return true;
 		
 	}
-
+	
 	public static boolean orderFood(SeatClass seatClass){
-		// TODO: Show Menu
 		// Select food items from menu
 		System.out.println("Please select from this menu:");
 		FoodOrder foodOrder = new FoodOrder(seatClass);
@@ -188,16 +186,12 @@ public class UI {
 		int selection = 1;
 		while(true){
 			selection = getSelection();
-			if(foodOrder.order(foodOrder.getMenu().getMenuItem(selection-1)) == false){
+                        if(selection == 0)
+                            break;
+                        if(foodOrder.order(foodOrder.getMenu().getMenuItem(selection-1)) == false){
 				System.out.println("Invalid choise, try again");
 			}
-			System.out.println("Order more food?");
-			System.out.println("1. Yes");
-			System.out.println("2. No");
-			selection = getSelection();
-			if(selection != 1)
-				break;
-			System.out.println(foodOrder.showMenu() +"\n Enter your choise: ");
+			System.out.println(foodOrder.showMenu() +"\n Select more food or press 0 to exit: ");
 		}
 		System.out.println("Your food order is completed (too late to change now):");
 		System.out.println(foodOrder);
@@ -213,6 +207,15 @@ public class UI {
 		return true;
 		
 	}
+
+	public static boolean showAllCustomers(){
+		System.out.println(booking.showAllCustomers());
+		getString(1);
+		return true;
+
+	}
+
+	
 	
 	public static boolean showFoodMenus(){
 		System.out.println("\nSelect menu:");

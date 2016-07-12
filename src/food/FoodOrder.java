@@ -40,14 +40,13 @@ public class FoodOrder {
 	}
 
 	public String toString(){
-		String orderString = "Ordered Food:\n";
+		StringBuilder sb = new StringBuilder("Ordered Food:\n");
 		for(FoodItem food : order){
-			orderString = orderString.concat("    "+ food.getItem().toString() +"  "+ food.getPrice() +"kr\n");
+			sb.append("    "+ food +"\n");
 		}
-		orderString = orderString.concat("    Total Cost = "+ totalCost +"\n");
-		orderString = orderString.concat("    Order payed: "+ payed);
-		return orderString;
-		
+		sb.append("\n    Total Cost = "+ totalCost +"\n");
+		sb.append("    Order payed: "+ payed +"\n");
+		return sb.toString();
 	}
 
 }

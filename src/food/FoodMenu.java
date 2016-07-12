@@ -31,10 +31,10 @@ public class FoodMenu {
 	}
 	
 	public String toString(){
-		String menuString = "Menu:\n";
+		StringBuilder sb = new StringBuilder("Menu:\n");
 		for(FoodItem food : menu){
-			menuString = menuString.concat("    "+ food.getItem().toString() +"  "+ food.getPrice() +"kr\n");
+			sb.append("    "+ food +"\n");
 		}
-		return menuString;
+		return sb.toString();
 	}
 }
