@@ -2,6 +2,12 @@ package flyace;
 
 import java.util.ArrayList;
 
+//Company
+//	Selects the plane which is presently boarding
+//	Adds the Company to the ticket
+//	Sends the ticket to the Plane
+//		plane.putCustomer(Ticket);
+
 public class Company{
 
     private String name;
@@ -64,6 +70,10 @@ public class Company{
 
     public void setMoney(int money) {
         this.money = money;
+    }
+    
+    public void putCustomer(Ticket ticket){
+    
     }
 
     
