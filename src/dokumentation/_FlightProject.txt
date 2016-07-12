@@ -2,6 +2,14 @@ Projekt 2. Java Advanced - FlightProject
 https://drive.google.com/drive/my-drive
 Java material | Project 2 | -FlightProject.pdf
 
+//Seat	[Denna klass finns inte längre]						Stefan
+	//seatClass = First or Economy [Titta på var customer sitter i Passangerplane, 0-5 first class, 6-10 economy class]
+	//seatNumber = 1-10 
+	//status = idle or Customer object [om indexet tomt, ingen customer]
+	//price = 20000kr or 5000kr [se ovan First or economy]
+	//assignCustomer() [putCustomer i PassengerPlane]
+	//removeCustomer() [freeSeat i PassengerPlane]
+
 
 BookingSystem						Kent
 	has List of customers
@@ -12,26 +20,21 @@ Company							Stefan
 	has Money
 	buyPlane()
 	sellPlane()
-	getPlane()
+        getPlanes()
+
 Money							Amirali
 	saldo	
 	income()
 	cost()
-Plane							Stefan
-	has List of Seats (5 first class + 5 economy class)
-	status = idle, takeoff, flight, landing, refuel
-	//reservSeat()
-	reserveSeat()
+
+PassengerPlane							Stefan
+	has map of Seats (5 first class + 5 economy class)
+	status = TAKEOFF, INFLIGHT, LANDING, REFUELLING, BOARDING, PASSANGERSLEAVING, INACTIVE
+        putCustomer()   [works]
 	fly()
-	freeSeat()
-	freeAllSeats()
-Seat							Stefan
-	seatClass = First or Economy
-	seatNumber = 1-10
-	status = idle or Customer object
-	price = 20000kr or 5000kr
-	assignCustomer()
-	removeCustomer()
+	freeSeat()      [works]
+	freeAllSeats()  [works]
+
 Customer						Stefan
 	name
 	id
@@ -43,13 +46,15 @@ Customer						Stefan
 	getFoodOrder()
 	orderFood(int menuItem)
 	payFood()
+
 Ticket							Amirali
 	Customer
 	Plane
 	Seat
 	price
 	expired
-FoodOrder
+
+FoodOrder						Kent
 	has Menu
 	has List of FoodItems from Menu (orderd food)
 	totalCost
@@ -59,12 +64,14 @@ FoodOrder
 	getTotalCost()
 	pay()
 	toString()
-Menu
+
+Menu							Kent
 	has menu of FoodItems
 	getMenu()
 	getMenuItem(item)
 	toString()
-FoodItem
+
+FoodItem						Kent
 	item
 	price
 	getItem()
@@ -82,4 +89,50 @@ Actions:
 * Show planes
 * Show seats
 * Show Ticktes
+:
+
+===========================================================================================================================================
+Proposal - Reserv seat
+
+
+BookingSystem 
+	creates a ticket object containing Customer object and seatClass
+	Sends the ticket to the Company 
+		customer.putCustomer(Ticket);
+
+Company
+	Selects the plane which is presently boarding
+	Adds the Company to the ticket
+	Sends the ticket to the Plane
+		plane.putCustomer(Ticket);
+
+Plane
+	Selects an idle seat according to the SeatClass in the ticket.
+	Adds the Plane object to the ticket
+	Sends the ticket to the Seat		
+		seat.putCustomer(Ticket);
+
+Seat
+	Mark the seat as occupied and saves reference to the Ticket object.
+		(Ticket this.ticket = ticket)
+	and return the ticket, all the way back to BookingSystem
+
+When the ticket is received by the BookingSystem it contains all information, if the reservation succeeded.
+If the reservation failed for some reason, then the ticket doesn't contain any Seat and is incomplete.
+The BookingSystem can than try with a new Ticket with the other SeatClass or wait for a plane.
+
+When the flight is over, all the seats in that plane are marked as idle,
+	the tickets related to each seat marked as Expired, and ticket references removed from the seats.
+
+The Ticket could contain:
+	Customer customer;
+	SeatClass seatClass
+	Company company;
+	Plane plane;
+	Seat seat;
+	boolean expired = false;
+
+Constructor:
+	public Ticket(Customer customer, SeatClass seatClass){
+
 
