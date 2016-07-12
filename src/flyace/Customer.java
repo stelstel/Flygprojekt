@@ -1,10 +1,13 @@
 package flyace;
 
+import food.FoodOrder;
+
 public class Customer {
 
     private String firstName;
     private String surname;
     private String personalNumber;
+    private FoodOrder foodorder;
     
     //********************* Contructors ****************************************
     public Customer(String firstName, String surname, String pnumber) {
@@ -35,5 +38,15 @@ public class Customer {
 
     public void setPersonalNumber(String personalNumber) {
         this.personalNumber = personalNumber;
-    }    
+    }   
+
+    public FoodOrder getFoodorder() {
+        return foodorder;
+    }
+
+    public void setFoodorder(FoodOrder foodorder) {
+        this.foodorder = foodorder;
+    }
+    
+    
 }

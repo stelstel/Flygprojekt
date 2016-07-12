@@ -19,21 +19,23 @@ public class PassengerPlane extends AirPlane {
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
         
-        for(int i = 0; i < nrOfSeats; i++ ){
-            Seat seat = new Seat();
-            seat.seatNumber = i;
-            seat.seatstatus = SeatStatus.FREE;
-            seats.put(i, seat);
-            
-            if(i < nrOfSeats / 2){
-                seats.get(i).setPrice(firstPrice);
-                seats.get(i).setSeatclass(SeatClass.FIRST);
-            }
-            else{
-                seats.get(i).setPrice(economyPrice);
-                seats.get(i).setSeatclass(SeatClass.ECONOMY);
-            }
-        }
+        freeAllSeats();
+        
+//        for(int i = 0; i < nrOfSeats; i++ ){
+//            Seat seat = new Seat();
+//            seat.seatNumber = i;
+//            seat.seatstatus = SeatStatus.FREE;
+//            seats.put(i, seat);
+//            
+//            if(i < nrOfSeats / 2){
+//                seats.get(i).setPrice(firstPrice);
+//                seats.get(i).setSeatclass(SeatClass.FIRST);
+//            }
+//            else{
+//                seats.get(i).setPrice(economyPrice);
+//                seats.get(i).setSeatclass(SeatClass.ECONOMY);
+//            }
+//        }
     }
 
     PassengerPlane(int numberOfSeats) {
@@ -104,11 +106,11 @@ public class PassengerPlane extends AirPlane {
 
     @Override
     // Remove one seat from the seats
-    void freeSeat(Customer customer) {
-        String customersPersNum = customer.getPersonalNumber();
-        
+    //void freeSeat(Customer customer) {
+    void freeSeat(Ticket ticket) {
+               
         for (int i = 0; i < nrOfSeats; i++) {
-            if (seats.get(i) != null && customersPersNum.equals(customer.getPersonalNumber() ) ) {
+            if (seats.get(i) != null && seats.get(i) == ticket.getSeat() )  {
                 seats.remove(i);
             }
         }
@@ -116,7 +118,21 @@ public class PassengerPlane extends AirPlane {
 
     @Override
     void freeAllSeats() {
-        seats.clear();
+        for(int i = 0; i < nrOfSeats; i++ ){
+            Seat seat = new Seat();
+            seat.seatNumber = i;
+            seat.seatstatus = SeatStatus.FREE;
+            seats.put(i, seat);
+            
+            if(i < nrOfSeats / 2){
+                seats.get(i).setPrice(firstPrice);
+                seats.get(i).setSeatclass(SeatClass.FIRST);
+            }
+            else{
+                seats.get(i).setPrice(economyPrice);
+                seats.get(i).setSeatclass(SeatClass.ECONOMY);
+            }
+        }
     }
     
     public int getNrOfFreeSeats(){
