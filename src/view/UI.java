@@ -4,6 +4,7 @@ import java.util.Scanner;
 import flyace.BookingSystem;
 import flyace.Customer;
 import flyace.SeatClass;
+import flyace.Ticket;
 import food.*;
 
 public class UI {
@@ -11,7 +12,8 @@ public class UI {
 	// Declare BookingSystem
 	static BookingSystem booking;
 	Customer customer;
-	
+        static Ticket ticket;
+        
 	// Create a scanner for user input
 	static Scanner sc= new Scanner(System.in);
 	
@@ -153,8 +155,16 @@ public class UI {
 				default:
 					break;
 			}
-			booking.addCustomer(firstName, lastName, seatClass);
-			
+			ticket = booking.addCustomer(firstName, lastName, seatClass);
+                        if(ticket.getSeat() == null){
+                            System.out.println("Sorry no seat available for seatClass "+ seatClass);
+                        }
+                        else{
+                            System.out.println("A ticket has been created successfully");
+                        }    
+        		getString(1);
+                        
+                        
 			System.out.println("Order food: ");
 			System.out.println("1. Yes");
 			System.out.println("2. No");
