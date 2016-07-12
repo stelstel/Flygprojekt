@@ -8,11 +8,7 @@ public class Ticket {
     
     
      
-    
-    public Ticket(Customer customer, AirPlane plane,Seat seat,double price,Date expired){
-    }
-    
- 
+    private Company company;
     private Customer customer ;
     private AirPlane plane;
     private Seat seat;
@@ -20,6 +16,14 @@ public class Ticket {
     private Date expired;
     
 
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
     
     public Customer getCustomer() {
         return customer;
@@ -65,10 +69,8 @@ public class Ticket {
         return expired;
     }
 
-    
-    
     public void setExpired(Date expired) {
         this.expired = expired;
     }
-    
+
 }
