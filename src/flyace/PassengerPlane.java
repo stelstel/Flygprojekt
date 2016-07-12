@@ -1,10 +1,8 @@
 package flyace;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
- *
  * @author Stefan Elmgren
  * @version 1.02
  */
@@ -99,5 +97,4 @@ public class PassengerPlane extends AirPlane {
     void freeAllSeats() {
         seats.clear();
     }
-
 }
