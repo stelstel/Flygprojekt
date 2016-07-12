@@ -60,11 +60,11 @@ public class Ticket {
         this.expired = expired;
     }
 
-    public SeatClass getSeatclass() {
+    public SeatClass getSeatClass() {
         return seatclass;
     }
 
-    public void setSeatclass(SeatClass seatclass) {
+    public void setSeatClass(SeatClass seatclass) {
         this.seatclass = seatclass;
     }
 }
