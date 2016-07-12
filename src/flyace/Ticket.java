@@ -1,22 +1,23 @@
 
 package flyace;
 
+import java.util.Date;
 
 public class Ticket {
     
     
     
+     
     
-    
-    public Ticket(){
+    public Ticket(Customer customer, AirPlane plane,Seat seat,double price,Date expired){
     }
     
-    
-    
-    
+ 
     private Customer customer ;
     private AirPlane plane;
     private Seat seat;
+    private double price ;
+    private Date expired;
     
 
     
@@ -48,14 +49,26 @@ public class Ticket {
     public void setSeat(Seat seat) {
         this.seat = seat;
     }
+
+    
+    public double getPrice() {
+        return price;
+    }
+
+    
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    
+    public Date getExpired() {
+        return expired;
+    }
+
     
     
-    
-    
+    public void setExpired(Date expired) {
+        this.expired = expired;
+    }
     
 }
-//     Customer
-//	Plane
-//	Seat
-//	price
-//	expired
