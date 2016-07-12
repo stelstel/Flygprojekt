@@ -9,7 +9,7 @@ public class BookingSystem {
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	private Company company;
         private Ticket ticket;
-        private AirPlane plane;
+        private PassengerPlane plane;
         private int uniqueCustomerId;
         
 	public BookingSystem(){
@@ -23,7 +23,7 @@ public class BookingSystem {
 //	public Customer addCustomer(String firstName, String lastName, SeatClass seatClass){
 	public Ticket addCustomer(String firstName, String lastName, SeatClass seatClass){
 		// Find a plane
-		ArrayList<AirPlane> planes = company.getPlanes();
+		ArrayList<PassengerPlane> planes = company.getPlanes();
 		if(planes.size() == 0){
 			return null;
 		}
@@ -32,7 +32,9 @@ public class BookingSystem {
 		//Reserv a seat for the customer
 		Customer customer = new Customer(firstName, lastName, String.valueOf(uniqueCustomerId));
       		//TODO: Use Ticket 
-                ticket = new Ticket(customer,null,null,0,null);
+                ticket = new Ticket();
+                ticket.setCustomer(customer);
+                ticket.setSeatclass(seatClass);
                 company.putCustomer(ticket);
                 if(ticket.getSeat() == null){
 System.out.println("BookingSystem: No Seat found in ticket");
