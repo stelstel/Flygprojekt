@@ -18,4 +18,11 @@ public class FoodItem {
 		return price;
 	}
 
+        public String toString(){
+		StringBuilder sb = new StringBuilder("                                        ");
+		sb.insert(0, item);
+		sb.insert(30, String.valueOf(price) +" kr");
+		return sb.toString();
+	}
+
 }
