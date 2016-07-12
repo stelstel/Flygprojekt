@@ -19,18 +19,21 @@ public class PassengerPlaneTest {
     @Test
     public void testPutCustomer() {
         System.out.println("putCustomer");
+        Ticket ticket = new Ticket();
+        ticket.setSeatClass(SeatClass.FIRST);
+        
         Customer customer = new Customer("Berit", "Olsson", "7005130075");
         SeatClass seatclass = SeatClass.FIRST;
         PassengerPlane pp = new PassengerPlane("Planet Arne", 10);
-        LinkedHashMap<Integer, Customer> seats = pp.getSeats();
+        LinkedHashMap<Integer, Seat> seats = pp.getSeats();
 
         int sizeBefore = seats.size();
 //        for(int i= 0; i < 10; i++ ){
 //            System.out.println("s= " + i + seats.toString());
 //        }
 
-        pp.putCustomer(customer, seatclass);
-
+        pp.putCustomer(ticket);
+        
 //        for(int i= 0; i < 10; i++ ){
 //            System.out.println("s= " + i + seats.get(i));
 //        }
@@ -95,17 +98,22 @@ public class PassengerPlaneTest {
     @Test
     public void testFreeSeat() {
         System.out.println("freeSeat");
+        Ticket ticket = new Ticket();
+        ticket.setSeatClass(SeatClass.FIRST);
+        
+        Ticket ticket2 = new Ticket();
+        ticket2.setSeatClass(SeatClass.ECONOMY);
 
         PassengerPlane p = new PassengerPlane("Plan", 10);
-        LinkedHashMap<Integer,Customer> seats = p.getSeats();
+        LinkedHashMap<Integer, Seat> seats = p.getSeats();
 
         Customer customer = new Customer("Kalle", "Svensson", "6705130075");
         //Seat seat = new Seat(customer);
-        p.putCustomer(customer, SeatClass.FIRST);
+        p.putCustomer(ticket);
 
         Customer customer2 = new Customer("Karl", "Nilsson", "6805130075");
         //Seat seat2 = new Seat(customer2);
-        p.putCustomer(customer2, SeatClass.ECONOMY);
+        p.putCustomer(ticket2);
 
 //        System.out.println("Before");
 //        for (int i = 0; i < 10; i++) {
@@ -130,10 +138,12 @@ public class PassengerPlaneTest {
     @Test
     public void testFreeAllSeats() {
         System.out.println("freeAllSeats");
+        Ticket ticket = new Ticket();
+        ticket.setSeatClass(SeatClass.FIRST);
         PassengerPlane p = new PassengerPlane("Plan Sten", 10);
-        LinkedHashMap<Integer, Customer> seats = p.getSeats();
+        LinkedHashMap<Integer, Seat> seats = p.getSeats();
         Customer customer = new Customer("Stina", "Adel", "8705130075");
-        p.putCustomer(customer, SeatClass.FIRST);
+        p.putCustomer(ticket);
 
         int sizeBefore = seats.size();
 

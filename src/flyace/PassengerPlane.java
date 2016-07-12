@@ -49,7 +49,7 @@ public class PassengerPlane extends AirPlane {
     //public void putCustomer(Customer customer, SeatClass seatclass) {
         int seatFound = -1;
 
-        if (seats.size() < nrOfSeats) { // Seats available
+        if (/*seats.size()*/0 < nrOfSeats) { // Seats available //TODO
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
                 for (int i = 0; i < 5; i++) {
                     if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
@@ -59,6 +59,8 @@ public class PassengerPlane extends AirPlane {
                 }
 
                 if (seatFound > -1) { //Free seat found
+                    //Set seat to occupied
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
                     ticket.setSeat(seats.get(seatFound));
                 } else {
                     //erbjud plats i andra klass
@@ -71,6 +73,8 @@ public class PassengerPlane extends AirPlane {
                     }
                 }
                 if (seatFound > -1) {
+                    //Set seat to occupied
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
                     ticket.setSeat(seats.get(seatFound));
                 } else {
                     //erbjud plats i första klass
@@ -79,6 +83,7 @@ public class PassengerPlane extends AirPlane {
         } else {
             // All seats occupied
         }
+        System.out.println("ticket.getSeat() : " + ticket.getSeat().getSeatstatus()); //////////////////////////////////////
     }
 
     public int getNrOfSeats() {
