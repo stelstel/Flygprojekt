@@ -83,7 +83,6 @@ public class PassengerPlane extends AirPlane {
         } else {
             // All seats occupied
         }
-        System.out.println("ticket.getSeat() : " + ticket.getSeat().getSeatstatus()); //////////////////////////////////////
     }
 
     public int getNrOfSeats() {
