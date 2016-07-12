@@ -34,7 +34,7 @@ public class BookingSystem {
       		//TODO: Use Ticket 
                 ticket = new Ticket();
                 ticket.setCustomer(customer);
-                ticket.setSeatclass(seatClass);
+                ticket.setSeatClass(seatClass);
                 company.putCustomer(ticket);
                 if(ticket.getSeat() == null){
 System.out.println("BookingSystem: No Seat found in ticket");
