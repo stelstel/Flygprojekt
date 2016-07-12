@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class BookingSystem {
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	private Company company;
-	private AirPlane plane;
+        private Ticket ticket;
+        private AirPlane plane;
         private int uniqueCustomerId;
         
 	public BookingSystem(){
@@ -19,7 +20,8 @@ public class BookingSystem {
 		company.buyPlane(plane);
 	}
 	
-	public Customer addCustomer(String firstName, String lastName, SeatClass seatClass){
+//	public Customer addCustomer(String firstName, String lastName, SeatClass seatClass){
+	public Ticket addCustomer(String firstName, String lastName, SeatClass seatClass){
 		// Find a plane
 		ArrayList<AirPlane> planes = company.getPlanes();
 		if(planes.size() == 0){
@@ -28,13 +30,24 @@ public class BookingSystem {
 		plane = planes.get(0);
 
 		//Reserv a seat for the customer
-		//TODO: Add personal number argument
 		Customer customer = new Customer(firstName, lastName, String.valueOf(uniqueCustomerId));
-		plane.putCustomer(customer, seatClass);
-		
+      		//TODO: Use Ticket 
+                ticket = new Ticket(customer,null,null,0,null);
+                company.putCustomer(ticket);
+                if(ticket.getSeat() == null){
+System.out.println("BookingSystem: No Seat found in ticket");
+                }
+                else{
+System.out.println("BookingSystem: Yes a Seat found in ticket");
+                }
+                //instead of this
+//                plane.putCustomer(customer, seatClass);
+
+
 		customers.add(customer);
                 uniqueCustomerId++;
-		return customer;
+//		return customer;
+		return ticket;
 	}
        	public String showAllCustomers(){
                 String header =  "Number  Class   Fist name           Last name\n";
