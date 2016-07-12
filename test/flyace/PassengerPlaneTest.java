@@ -20,15 +20,10 @@ public class PassengerPlaneTest {
     @Test
     public void testPutCustomer() {
         System.out.println("putCustomer");
-        Ticket ticket = new Ticket();
-        ticket.setSeatClass(SeatClass.FIRST);
-        
-        Customer customer = new Customer("Berit", "Olsson", "7005130075");
-        SeatClass seatclass = SeatClass.FIRST;
+        Ticket ticket = new Ticket(SeatClass.FIRST);
         PassengerPlane pp = new PassengerPlane("Planet Arne", 10);
-        LinkedHashMap<Integer, Seat> seats = pp.getSeats();
-
-        int sizeBefore = seats.size();
+        
+        int sizeBefore = pp.getNrOfFreeSeats();
 //        for(int i= 0; i < 10; i++ ){
 //            System.out.println("s= " + i + seats.toString());
 //        }
@@ -38,8 +33,8 @@ public class PassengerPlaneTest {
 //        for(int i= 0; i < 10; i++ ){
 //            System.out.println("s= " + i + seats.get(i));
 //        }
-        int sizeAfter = seats.size();
-        assertEquals(sizeBefore, sizeAfter - 1);
+        int sizeAfter = pp.getNrOfFreeSeats();
+        assertEquals(sizeBefore, sizeAfter + 1);
     }
 
     /**
@@ -97,7 +92,7 @@ public class PassengerPlaneTest {
      * Test of freeSeat method, of class PassengerPlane_old_01.
      */
     @Test
-    public void testFreeSeat() {
+    public void testFreeOneSeat() {
         System.out.println("freeSeat");
         Ticket ticket = new Ticket();
         ticket.setSeatClass(SeatClass.FIRST);
@@ -122,8 +117,8 @@ public class PassengerPlaneTest {
 //        }
         int sizeBefore = seats.size();
 
-        p.freeSeat(ticket);
-        p.freeSeat(ticket2);
+        p.freeOneSeat(ticket);
+        p.freeOneSeat(ticket2);
 
 //        System.out.println("After");
 //        for (int i = 0; i < 10; i++) {
@@ -139,29 +134,25 @@ public class PassengerPlaneTest {
     @Test
     public void testFreeAllSeats() {
         System.out.println("freeAllSeats");
-        Ticket ticket = new Ticket();
-        ticket.setSeatClass(SeatClass.FIRST);
+        Ticket ticket = new Ticket(SeatClass.FIRST);
+        Ticket ticket2 = new Ticket(SeatClass.ECONOMY);
         PassengerPlane p = new PassengerPlane("Plan Sten", 10);
-        LinkedHashMap<Integer, Seat> seats = p.getSeats();
-        Customer customer = new Customer("Stina", "Adel", "8705130075");
+        
         p.putCustomer(ticket);
-
-        int sizeBefore = seats.size();
+        p.putCustomer(ticket2); //Now 2 seats occupied -> 8 free
+        
+        int sizeBefore = p.getNrOfFreeSeats();
+        System.out.println("sizeBefore :" + sizeBefore);
 
         System.out.println("Before");
-        for (int i = 0; i < 10; i++) {
-            System.out.println("s= " + i + seats.get(i));
-        }
-
+        
         p.freeAllSeats();
         
         System.out.println("After");
-        for (int i = 0; i < 10; i++) {
-            System.out.println("s= " + i + seats.get(i));
-        }
-
-        int sizeAfter = seats.size();
-        assertEquals(sizeAfter, sizeBefore - 1);
+        
+        int sizeAfter = p.getNrOfFreeSeats();
+        System.out.println("sizeAfter :" + sizeAfter);
+        assertEquals(sizeBefore, sizeAfter - 2 );
     }
 
     /**

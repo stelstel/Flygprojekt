@@ -107,7 +107,7 @@ public class PassengerPlane extends AirPlane {
     @Override
     // Remove one seat from the seats
     //void freeSeat(Customer customer) {
-    void freeSeat(Ticket ticket) {
+    void freeOneSeat(Ticket ticket) { 
                
         for (int i = 0; i < nrOfSeats; i++) {
             if (seats.get(i) != null && seats.get(i) == ticket.getSeat() )  {
