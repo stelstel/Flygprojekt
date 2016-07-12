@@ -162,4 +162,44 @@ public class PassengerPlaneTest {
         int sizeAfter = seats.size();
         assertEquals(sizeAfter, sizeBefore - 1);
     }
+
+    /**
+     * Test of getSeats method, of class PassengerPlane.
+     */
+    @Test
+    public void testGetSeats() {
+        System.out.println("getSeats");
+        PassengerPlane instance = new PassengerPlane();
+        LinkedHashMap<Integer, Seat> expResult = null;
+        LinkedHashMap<Integer, Seat> result = instance.getSeats();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of fly method, of class PassengerPlane.
+     */
+    @Test
+    public void testFly() {
+        System.out.println("fly");
+        PassengerPlane instance = new PassengerPlane();
+        instance.fly();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getFreeSeats method, of class PassengerPlane.
+     */
+    @Test
+    public void testGetFreeSeats() {
+        System.out.println("getFreeSeats");
+        PassengerPlane instance = new PassengerPlane();
+        int expResult = 0;
+        int result = instance.getFreeSeats();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }
