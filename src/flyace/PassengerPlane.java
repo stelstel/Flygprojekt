@@ -49,7 +49,7 @@ public class PassengerPlane extends AirPlane {
     //public void putCustomer(Customer customer, SeatClass seatclass) {
         int seatFound = -1;
 
-        if (getNrOfFreeSeats() < nrOfSeats) { // Seats available
+        if (getNrOfFreeSeats() > 0) { // Seats available
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
                 for (int i = 0; i < 5; i++) {
                     if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
@@ -122,6 +122,7 @@ public class PassengerPlane extends AirPlane {
     public int getNrOfFreeSeats(){
         int nrOfFreeSeats = 0;
         for(int i = 0; i < this.nrOfSeats; i++){
+            //if(seats.get(i).getSeatstatus() == SeatStatus.FREE){
             if(seats.get(i).getSeatstatus() == SeatStatus.FREE){
                 nrOfFreeSeats++;
             }
