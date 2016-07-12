@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 
 public abstract class AirPlane {
     private String model; // Airplane model
-    private LinkedHashMap<Integer, Seat> seats; //Customer seats in the airplane
+    private LinkedHashMap<Integer, Customer> seats; //Customer seats in the airplane
     private String name; // Name of the airplane
     private int numberOfSeats; //Number of passanger seats in the airplane
     
@@ -37,7 +37,7 @@ public abstract class AirPlane {
     
     //abstract void reserveSeat();
     
-    abstract void freeSeat(Seat seat);
+    abstract void freeSeat(Customer customer);
     
     abstract void freeAllSeats();
     
