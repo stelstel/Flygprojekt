@@ -17,6 +17,16 @@ package flyace;
 	//assignCustomer() [putCustomer i PassengerPlane]
 	//removeCustomer() [freeSeat i PassengerPlane]
 
+//Mark the seat as occupied and saves reference to the Ticket object.
+//		(Ticket this.ticket = ticket)
+//	and return the ticket, all the way back to BookingSystem
+
 public class Seat {
+    Ticket ticket;
+    
+    //****************** Constructors ******************************************
+    public Seat(Ticket ticket){
+        this.ticket = ticket;
+    }
     
 }
