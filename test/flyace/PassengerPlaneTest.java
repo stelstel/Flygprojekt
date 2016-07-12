@@ -193,11 +193,11 @@ public class PassengerPlaneTest {
      * Test of getFreeSeats method, of class PassengerPlane.
      */
     @Test
-    public void testGetFreeSeats() {
+    public void testGetnrOfFreeSeats() {
         System.out.println("getFreeSeats");
-        PassengerPlane instance = new PassengerPlane();
-        int expResult = 0;
-        int result = instance.getFreeSeats();
+        PassengerPlane pPlane = new PassengerPlane();
+        int expResult = 10;
+        int result = pPlane.getNrOfFreeSeats();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
