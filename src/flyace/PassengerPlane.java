@@ -9,13 +9,32 @@ import java.util.LinkedHashMap;
 public class PassengerPlane extends AirPlane {
 
     private int nrOfSeats;
-    private LinkedHashMap<Integer, Customer> seats = new LinkedHashMap<Integer, Customer>(nrOfSeats);
-
+    private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
+    private double firstPrice = 5000.00;
+    private double economyPrice = 20000.00;
+    
     //*********************** Contructors **************************************
     // All contructors use this constructor
     PassengerPlane(String name, int numberOfSeats) {
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
+        
+        for(int i = 0; i < nrOfSeats; i++ ){
+            Seat seat = new Seat();
+            seat.seatNumber = i;
+            seat.seatstatus = SeatStatus.FREE;
+                                    
+            if(i < nrOfSeats / 2){
+                seats.get(i).setPrice(firstPrice);
+                seats.get(i).setSeatclass(SeatClass.FIRST);
+            }
+            else{
+                seats.get(i).setPrice(economyPrice);
+                seats.get(i).setSeatclass(SeatClass.ECONOMY);
+            }
+            
+            seats.put(i, new Seat() );
+        }
     }
 
     PassengerPlane(int numberOfSeats) {
@@ -40,22 +59,20 @@ public class PassengerPlane extends AirPlane {
                     }
                 }
 
-                if (seatFound > -1) {
-                    //Seat seat = new Seat(customer); 
-                    seats.put(seatFound, ticket.getCustomer() ); // Sätt kunden i sätet
+                if (seatFound > -1) { //Free seat found
+                    ticket.setSeat(seats.get(seatFound));
                 } else {
                     //erbjud plats i andra klass
                 }
-            } else if (ticket.getSeatclass == SeatClass.ECONOMY) { // Economy class
+            } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
-                    if (seats.get(i) == null) { //empty seat found
+                    if (seats.isEmpty() || seats.get(i) == null) { //empty seat found
                         seatFound = i;
                         break;
                     }
                 }
                 if (seatFound > -1) {
-                    //Seat seat = new Seat(customer); 
-                    seats.put(seatFound, ticket.getCustomer() );  // Sätt kunden i sätet
+                    ticket.setSeat(seats.get(seatFound));
                 } else {
                     //erbjud plats i första klass
                 }
@@ -69,7 +86,7 @@ public class PassengerPlane extends AirPlane {
         return nrOfSeats;
     }
 
-    public LinkedHashMap<Integer, Customer> getSeats() {
+    public LinkedHashMap<Integer, Seat> getSeats() {
         return seats;
     }
 
