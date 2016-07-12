@@ -11,6 +11,14 @@ public class Ticket {
     private double price;
     private Date expired;
     private SeatClass seatclass;
+    
+    public Ticket(){
+        
+    }
+    
+    public Ticket(SeatClass seatclass){
+        this.seatclass = seatclass;
+    }
 
     public Company getCompany() {
         return company;
