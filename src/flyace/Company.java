@@ -75,6 +75,7 @@ public class Company {
         ticket.setCompany(this);
         //TODO now selects first plane. Maybe needed to select other plane
         PassengerPlane pPlane = this.getPlanes().get(0);
+        ticket.setPlane(pPlane);
         pPlane.putCustomer(ticket);
         
     }

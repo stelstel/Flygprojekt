@@ -27,11 +27,12 @@ public class PassengerPlane extends AirPlane {
     }
 
     @Override
-    public void putCustomer(Customer customer, SeatClass seatclass) {
+    public void putCustomer(Ticket ticket){
+    //public void putCustomer(Customer customer, SeatClass seatclass) {
         int seatFound = -1;
 
         if (seats.size() < nrOfSeats) { // Seats available
-            if (seatclass == seatclass.FIRST) { // First class
+            if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
                 for (int i = 0; i < 5; i++) {
                     if (seats.isEmpty() || seats.get(i) == null) { //empty seat found
                         seatFound = i;
@@ -41,11 +42,11 @@ public class PassengerPlane extends AirPlane {
 
                 if (seatFound > -1) {
                     //Seat seat = new Seat(customer); 
-                    seats.put(seatFound, customer); // Sätt kunden i sätet
+                    seats.put(seatFound, ticket.getCustomer() ); // Sätt kunden i sätet
                 } else {
                     //erbjud plats i andra klass
                 }
-            } else if (seatclass == seatclass.ECONOMY) { // Economy class
+            } else if (ticket.getSeatclass == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
                     if (seats.get(i) == null) { //empty seat found
                         seatFound = i;
@@ -54,7 +55,7 @@ public class PassengerPlane extends AirPlane {
                 }
                 if (seatFound > -1) {
                     //Seat seat = new Seat(customer); 
-                    seats.put(seatFound, customer);  // Sätt kunden i sätet
+                    seats.put(seatFound, ticket.getCustomer() );  // Sätt kunden i sätet
                 } else {
                     //erbjud plats i första klass
                 }
