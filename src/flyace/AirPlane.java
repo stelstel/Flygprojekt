@@ -8,22 +8,12 @@ import java.util.LinkedHashMap;
  * Superclass
 */
 
-public abstract class AirPlane {
+public abstract class AirPlane implements Runnable{
     private String model; // Airplane model
     private LinkedHashMap<Integer, Customer> seats; //Customer seats in the airplane
     private String name; // Name of the airplane
     private int numberOfSeats; //Number of passanger seats in the airplane
-    
-    // Status of the airplane
-    public enum status {
-        TAKEOFF, 
-        INFLIGHT, 
-        LANDING, 
-        REFUELLING, 
-        BOARDING, 
-        PASSANGERSLEAVING, 
-        INACTIVE
-    }
+    private PlaneStatus status;
     
     /**
      * 
@@ -56,6 +46,12 @@ public abstract class AirPlane {
     public String getName() {
         return name;
     }
-    
-    
+
+    public PlaneStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PlaneStatus status) {
+        this.status = status;
+    }
 }
