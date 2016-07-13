@@ -16,7 +16,8 @@ public class Money {
     FoodOrder foodFirst = new FoodOrder(SeatClass.FIRST);
     FoodOrder foodEconomy = new FoodOrder(SeatClass.ECONOMY);
     
-    private double price = ticket.getSeat().getPrice();
+    // TODO commented out temporarly by Stefan
+    // private double price = ticket.getSeat().getPrice();
     public double getSaldo() {
         return saldo;
     }
@@ -25,8 +26,9 @@ public class Money {
         this.saldo = saldo;
     }
 
-    public double calcSuldo() {
-        return food.getTotalCost() + ticketPrice.getPrice();
-    }
+    // TODO commented out temporarly by Stefan
+//    public double calcSuldo() {
+//        return food.getTotalCost() + ticketPrice.getPrice();
+//    }
 }
 
