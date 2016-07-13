@@ -13,11 +13,16 @@ public class PassengerPlane extends AirPlane {
     
     // Map of objects of Seat
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
+   
+    // The price of a first class ticket
     private double firstClassPrice = 5000.00;
+    
+    // The price of a economy class ticket
     private double economyPrice = 20000.00;
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
+    
     /**
      * 
      * @param name Name of the PassangerPlane
@@ -26,7 +31,6 @@ public class PassengerPlane extends AirPlane {
     PassengerPlane(String name, int numberOfSeats) {
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
-        
         freeAllSeats();
     }
 
@@ -50,43 +54,40 @@ public class PassengerPlane extends AirPlane {
     
     @Override
     public void putCustomer(Ticket ticket){
-    //public void putCustomer(Customer customer, SeatClass seatclass) {
         int seatFound = -1;
 
         if (getNrOfFreeSeats() > 0) { // Seats available
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
-                for (int i = 0; i < 5; i++) {
-                    if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
+                for (int i = 0; i < 5; i++) { // Look in first class 
+                    //empty seat found
+                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { 
                         seatFound = i;
                         break;
                     }
                 }
 
-                if (seatFound > -1) { //Free seat found
+                if (seatFound > -1) { // Free seat found in first class
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
+                    // put the Seat in the ticket
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i andra klass
                 }
-            } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
-                for (int i = 5; i < 10; i++) {
-                    if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
+            // Economy class
+            } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { 
+                for (int i = 5; i < 10; i++) {  // Look in economy class 
+                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
                 }
                 if (seatFound > -1) {
                     //Set seat to occupied
-                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
+                    // put the Seat in the ticket
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i första klass
                 }
             }
-        } else {
-            // All seats occupied
-        }
+        } 
     }
     /**
      * 
