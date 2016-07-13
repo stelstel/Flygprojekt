@@ -2,6 +2,7 @@ package flyace;
 
 //Test Commit
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class BookingSystem {
     private HashMap<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
@@ -15,7 +16,7 @@ public class BookingSystem {
         this.company = new Company();
         uniqueCustomerId = 1;
         // Buy one initial plane to the company
-        plane = new PassengerPlane("Boeing 747", 10);
+        plane = new PassengerPlane("Boeing747", 10);
         company.buyPlane(plane);
     }
 
@@ -41,10 +42,14 @@ public class BookingSystem {
     }
 
     public String showTicketInformation(Ticket t) {
+        Customer c = t.getCustomer();
         StringBuilder sb = new StringBuilder();
         sb.append(getTicketHeader());
         sb.append(getTicketContent(t));
         sb.append("\n");
+        if(c.getFoodorder() != null){
+            sb.append(c.getFoodorder());
+        }
         return sb.toString();
     }
 
@@ -59,8 +64,8 @@ public class BookingSystem {
     }
 
     private StringBuilder getTicketHeader(){
-        String header =  "Num. Fist name           Last name           Airplane            Seat Class     Price     Status\n";
-        String header2 = "---- ---------           ---------           --------            ---- -----     -----     ------\n";
+        String header =  "Num. Fist name           Last name           Airplane            Seat Class     Price     Status    FoodOrder\n";
+        String header2 = "---- ---------           ---------           --------            ---- -----     -----     ------    ---------\n";
         StringBuilder sb = new StringBuilder(header);
         sb.append(header2);
         return sb;
@@ -80,14 +85,32 @@ public class BookingSystem {
             sb.append(fixLengthString("Economy",10));
         sb.append(fixLengthString(String.valueOf(t.getSeat().getPrice()),10));
         if(t.getSeat().getSeatstatus() == SeatStatus.FREE)
-            sb.append(fixLengthString("Free",10));
+            sb.append(fixLengthString("Expired",10));
         else
-            sb.append(fixLengthString("Occupied",10));
+            sb.append(fixLengthString("Valid",10));
+        if(c.getFoodorder() != null){
+            sb.append(fixLengthString("Yes",5));
+        } else {
+            sb.append(fixLengthString("No",5));
+        }
         //TODO: Add if FoodOrderExist or not
         sb.append("\n");
         return sb;
     }
 
+    public void buyPlane(String name){
+        plane = new PassengerPlane(name, 10);
+        company.buyPlane(plane);
+    }
+    
+    public String showPlanes(){
+        ArrayList<PassengerPlane> planes = company.getPlanes();
+        String planeStr = "";
+        for(PassengerPlane plane : planes){
+            planeStr = planeStr.concat("    "+ plane.getName() +"\n");
+        }
+        return planeStr;
+    }
 
     private String fixLengthString(String start, int length) {
         if (start.length() >= length) {
