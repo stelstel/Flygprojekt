@@ -48,32 +48,6 @@ public class BookingSystem {
         return sb.toString();
     }
 
-
-    public String showTicketInformation2(Ticket t) {
-        Customer c = t.getCustomer();
-        String header =  "Num. Fist name           Last name           Airplane            Seat Class     Price     Status\n";
-        String header2 = "---- ---------           ---------           --------            ---- -----     -----     ------\n";
-        StringBuilder sb = new StringBuilder(header);
-        sb.append(header2);
-        sb.append(fixLengthString(c.getPersonalNumber(),5));
-        sb.append(fixLengthString(c.getFirstName(),20));
-        sb.append(fixLengthString(c.getSurname(),20));
-        sb.append(fixLengthString(t.getPlane().getName(),20));
-        sb.append(fixLengthString(String.valueOf(t.getSeat().getSeatNumber()),5));
-        if(t.getSeat().getSeatclass() == SeatClass.FIRST)
-            sb.append(fixLengthString("First",10));
-        else
-            sb.append(fixLengthString("Economy",10));
-        sb.append(fixLengthString(String.valueOf(t.getSeat().getPrice()),10));
-        if(t.getSeat().getSeatstatus() == SeatStatus.FREE)
-            sb.append(fixLengthString("Free",10));
-        else
-            sb.append(fixLengthString("Occupied",10));
-        //TODO: Add if FoodOrderExist or not
-        sb.append("\n");
-        return sb.toString();
-    }
-
     public String showAllCustomers() {
         StringBuilder sb = new StringBuilder();
         sb.append(getTicketHeader());
