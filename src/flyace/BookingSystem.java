@@ -57,7 +57,7 @@ public class BookingSystem {
         sb.append(header2);
         sb.append(fixLengthString(c.getPersonalNumber(),5));
         sb.append(fixLengthString(c.getFirstName(),20));
-        sb.append(fixLengthString(c.getsurname(),20));
+        sb.append(fixLengthString(c.getSurname(),20));
         sb.append(fixLengthString(t.getPlane().getName(),20));
         sb.append(fixLengthString(String.valueOf(t.getSeat().getSeatNumber()),5));
         if(t.getSeat().getSeatclass() == SeatClass.FIRST)
@@ -97,7 +97,7 @@ public class BookingSystem {
         StringBuilder sb = new StringBuilder();
         sb.append(fixLengthString(c.getPersonalNumber(),5));
         sb.append(fixLengthString(c.getFirstName(),20));
-        sb.append(fixLengthString(c.getsurname(),20));
+        sb.append(fixLengthString(c.getSurname(),20));
         sb.append(fixLengthString(t.getPlane().getName(),20));
         sb.append(fixLengthString(String.valueOf(t.getSeat().getSeatNumber()),5));
         if(t.getSeat().getSeatclass() == SeatClass.FIRST)
