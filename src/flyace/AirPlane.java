@@ -37,7 +37,7 @@ public abstract class AirPlane {
     
     //abstract void reserveSeat();
     
-    abstract void freeSeat(Customer customer);
+    abstract void freeOneSeat(Ticket ticket);
     
     abstract void freeAllSeats();
     
