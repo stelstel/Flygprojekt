@@ -8,4 +8,15 @@ package flyace;
  */
 public final class TimeToFly {
     
+    /**
+     * 
+     * @param pPlane 
+     * 
+     * Checks if its time to fly
+     */
+    static public void checkIfItsTime(PassengerPlane pPlane){
+        if( pPlane.getNrOfFreeSeats() == 0){
+            pPlane.fly();
+        }
+    }
 }

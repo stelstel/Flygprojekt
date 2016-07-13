@@ -6,6 +6,7 @@ import flyace.Customer;
 import flyace.PassengerPlane;
 import flyace.SeatClass;
 import flyace.Ticket;
+import flyace.TimeToFly;
 import food.*;
 
 public class UI {
@@ -78,7 +79,7 @@ public class UI {
             System.out.println("9. Show Food Orders");
             System.out.println("10. Return to main menu");
             System.out.println("0. Avsluta");
-            System.out.println("Insert the number of your choise: ");
+            System.out.println("Insert the number of your choice: ");
 
             selection = getSelection();
 
@@ -119,7 +120,7 @@ public class UI {
                 case 0:
                     return false;
                 default:
-                    System.out.println("Invalid choise, try again.");
+                    System.out.println("Invalid choice, try again.");
             }
 
         }
@@ -177,6 +178,8 @@ public class UI {
                             return true;
                         }
                         System.out.println("A ticket has been created successfully");
+                        // TODO Kent, check if this is the correct line for this line of code!
+                        TimeToFly.checkIfItsTime(ticket.getPlane()); 
                         orderFood(seatClass);
                         return true;
                     default:
