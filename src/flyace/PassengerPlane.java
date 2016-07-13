@@ -20,22 +20,6 @@ public class PassengerPlane extends AirPlane {
         this.nrOfSeats = numberOfSeats;
         
         freeAllSeats();
-        
-//        for(int i = 0; i < nrOfSeats; i++ ){
-//            Seat seat = new Seat();
-//            seat.seatNumber = i;
-//            seat.seatstatus = SeatStatus.FREE;
-//            seats.put(i, seat);
-//            
-//            if(i < nrOfSeats / 2){
-//                seats.get(i).setPrice(firstPrice);
-//                seats.get(i).setSeatclass(SeatClass.FIRST);
-//            }
-//            else{
-//                seats.get(i).setPrice(economyPrice);
-//                seats.get(i).setSeatclass(SeatClass.ECONOMY);
-//            }
-//        }
     }
 
     PassengerPlane(int numberOfSeats) {
