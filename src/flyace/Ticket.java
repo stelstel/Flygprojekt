@@ -6,7 +6,7 @@ public class Ticket {
 
     private Company company;
     private Customer customer;
-    private AirPlane plane;
+    private PassengerPlane plane;
     private Seat seat;
     private double price;
     private Date expired;
@@ -36,11 +36,11 @@ public class Ticket {
         this.customer = customer;
     }
 
-    public AirPlane getPlane() {
+    public PassengerPlane getPlane() {
         return plane;
     }
 
-    public void setPlane(AirPlane plane) {
+    public void setPlane(PassengerPlane plane) {
         this.plane = plane;
     }
 
