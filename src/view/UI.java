@@ -11,7 +11,7 @@ public class UI {
 
 	// Declare BookingSystem
 	static BookingSystem booking;
-	Customer customer;
+	static Customer customer;
         static Ticket ticket;
         
 	// Create a scanner for user input
@@ -72,12 +72,13 @@ public class UI {
 			System.out.println("1. Register New Passenger");
 			System.out.println("2. Show/edit Passenger");
 			System.out.println("3. Show all passengers");
-			System.out.println("4. Show Planes");
-			System.out.println("5. Show Seats");
-			System.out.println("6. Show Ticktes");
-			System.out.println("7. Food menus");
-			System.out.println("8. Show Food Orders");
-			System.out.println("9. Return to main menu");
+                        System.out.println("4. Register Group of Passengers");
+                        System.out.println("5. Show Planes");
+			System.out.println("6. Show Seats");
+			System.out.println("7. Show Ticktes");
+			System.out.println("8. Food menus");
+			System.out.println("9. Show Food Orders");
+			System.out.println("10. Return to main menu");
 			System.out.println("0. Avsluta");
 			System.out.println("Insert the number of your choise: ");
 
@@ -88,17 +89,14 @@ public class UI {
 					continue1 = newPassenger();
 					break;
 				case 2:
-					//TODO:
-					System.out.println("TODO:");
+					showPassenger();
 					break;
 				case 3:
-					showAllCustomers();
-					System.out.println("TODO:");
+					showAllPassengers();
 					break;
 				case 4:
-					//TODO:
-					System.out.println("TODO:");
-					break;
+					continue1 = addGroupOfPassengers();
+                                        break;
 				case 5:
 					//TODO:
 					System.out.println("TODO:");
@@ -108,13 +106,17 @@ public class UI {
 					System.out.println("TODO:");
 					break;
 				case 7:
-					showFoodMenus();
-					break;
-				case 8:
 					//TODO:
 					System.out.println("TODO:");
 					break;
+				case 8:
+					showFoodMenus();
+					break;
 				case 9:
+					//TODO:
+					System.out.println("TODO:");
+					break;
+				case 10:
 					return true;
 				case 0:
 					return false;
@@ -127,14 +129,10 @@ public class UI {
 	}
 
 	public static boolean newPassenger(){
-//		int selection;
-//		boolean continue1 = true;
-		
 		// Get all needed parameters
-//		int employeeID = 0;
 		String firstName = "";
 		String lastName = "";
-		SeatClass seatClass = SeatClass.FIRST;
+		SeatClass seatClass = SeatClass.ECONOMY;
 		try{
 			System.out.println("First name: ");
 			firstName = getStringForced();
@@ -158,38 +156,34 @@ public class UI {
 			ticket = booking.addCustomer(firstName, lastName, seatClass);
                         if(ticket.getSeat() == null){
                             System.out.println("Sorry no seat available for seatClass "+ seatClass);
+                            //TODO: Check if idle seats available for the other class
                         }
                         else{
                             System.out.println("A ticket has been created successfully");
                         }    
         		getString(1);
-                        
-                        
-			System.out.println("Order food: ");
-			System.out.println("1. Yes");
-			System.out.println("2. No");
-			switch(getSelection()){
-				case 1:
-					orderFood(seatClass);
-					break;
-				case 2:
-					break;
-				default:
-					break;
-			}
 		}
 		catch(EmptyStringException e){
 			getString(1);
 			return true;
 		}
-
-		getString(1);
+                orderFood(seatClass);
 		return true;
-		
 	}
 	
 	public static boolean orderFood(SeatClass seatClass){
-		// Select food items from menu
+		System.out.println("Order food: ");
+		System.out.println("1. Yes");
+		System.out.println("2. No");
+		switch(getSelection()){
+			case 1:
+				break;
+			default:
+                       		getString(1);
+                                return true;
+		}
+            
+                // Select food items from menu
 		System.out.println("Please select from this menu:");
 		FoodOrder foodOrder = new FoodOrder(seatClass);
 		System.out.println(foodOrder.showMenu() +"\n Enter your choise: ");
@@ -207,23 +201,70 @@ public class UI {
 		System.out.println(foodOrder);
 		System.out.println("Do you want to pay?");
 		System.out.println("1. Yes");
-		System.out.println("2. No");
+//		System.out.println("2. No");
 		selection = getSelection();
 		if(selection == 1){
-			System.out.println("Your order, "+ foodOrder.getTotalCost() +" is payed. Thank you!");
+			System.out.println("Your order, "+ foodOrder.getTotalCost() +"kr is payed. Thank you!");
 			foodOrder.pay();
 		}
-//		getString(1);
+                else
+                    System.out.println("Thanks for nothing you cheap bastard");
+		getString(1);
 		return true;
 		
 	}
 
-	public static boolean showAllCustomers(){
+	public static boolean addGroupOfPassengers(){
+                SeatClass seatClass = SeatClass.FIRST;
+                System.out.println("Select number of passengers:");
+		int numberOfPassengers = getSelection();
+		System.out.println("Select seat class: ");
+		System.out.println("1. First Class");
+		System.out.println("2. Economy Class");
+		switch(getSelection()){
+			case 1:
+				seatClass = SeatClass.FIRST;
+				break;
+			case 2:
+				seatClass = SeatClass.ECONOMY;
+				break;
+			default:
+				break;
+		}
+                for(int i=0; i<numberOfPassengers; i++){
+                    ticket = booking.addCustomer("Matt", "Greencroft", seatClass);
+                    if(ticket.getSeat() == null){
+                        System.out.println("Sorry no seat available for seatClass "+ seatClass);
+                            //TODO: Check if idle seats available for the other class
+                    }
+                    else{
+                        System.out.println("A ticket has been created successfully");
+                    }
+                }
+        	getString(1);
+                return true;
+        }
+
+        
+	public static boolean showAllPassengers(){
 		System.out.println(booking.showAllCustomers());
 		getString(1);
 		return true;
 
 	}
+
+	public static boolean showPassenger(){
+            System.out.println("Select passenger number:");
+            int number = getSelection();
+            Ticket t = booking.findCustomerbyNumber(number);
+            if(t == null){
+                System.out.println("Passenger "+ number +" could not be found. Sorry!");
+                return true;
+            }
+            System.out.println(booking.showTicketInformation(t));
+            getString(1);
+            return true;
+        }
 
 	
 	
