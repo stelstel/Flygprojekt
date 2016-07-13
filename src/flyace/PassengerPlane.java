@@ -4,40 +4,24 @@ import java.util.LinkedHashMap;
 
 /**
  * @author Stefan Elmgren
- * @version 1.03
- * 
+ * @version 1.02
  */
 public class PassengerPlane extends AirPlane {
 
-    private int nrOfSeats; //Number of passenger seats in the plane
-    
-    // Map of objects of Seat
+    private int nrOfSeats;
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
-   
-    // The price of a first class ticket
-    private double firstClassPrice = 5000.00;
-    
-    // The price of a economy class ticket
+    private double firstPrice = 5000.00;
     private double economyPrice = 20000.00;
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
-    
-    /**
-     * 
-     * @param name Name of the PassangerPlane
-     * @param numberOfSeats Number of passenger seats in the plane
-     */
     PassengerPlane(String name, int numberOfSeats) {
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
+        
         freeAllSeats();
     }
 
-    /**
-     * 
-     * @param numberOfSeats Number of passenger seats in the plane
-     */
     PassengerPlane(int numberOfSeats) {
         this("Noname", numberOfSeats);
     }
@@ -45,54 +29,48 @@ public class PassengerPlane extends AirPlane {
     PassengerPlane() {
         this("Noname", 10);
     }
-    
-    /**
-     * 
-     * @param ticket Ticket
-     * Put customer in Seat
-     */
-    
+
     @Override
     public void putCustomer(Ticket ticket){
+    //public void putCustomer(Customer customer, SeatClass seatclass) {
         int seatFound = -1;
 
         if (getNrOfFreeSeats() > 0) { // Seats available
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
-                for (int i = 0; i < 5; i++) { // Look in first class 
-                    //empty seat found
-                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { 
+                for (int i = 0; i < 5; i++) {
+                    if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
                 }
 
-                if (seatFound > -1) { // Free seat found in first class
+                if (seatFound > -1) { //Free seat found
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
-                    // put the Seat in the ticket
                     ticket.setSeat(seats.get(seatFound));
+                } else {
+                    //erbjud plats i andra klass
                 }
-            // Economy class
-            } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { 
-                for (int i = 5; i < 10; i++) {  // Look in economy class 
-                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
+            } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
+                for (int i = 5; i < 10; i++) {
+                    if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
                 }
                 if (seatFound > -1) {
                     //Set seat to occupied
-                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
-                    // put the Seat in the ticket
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
                     ticket.setSeat(seats.get(seatFound));
+                } else {
+                    //erbjud plats i första klass
                 }
             }
-        } 
+        } else {
+            // All seats occupied
+        }
     }
-    /**
-     * 
-     * @return int. Number of passenger seats (Free or occupied) 
-     */
+
     public int getNrOfSeats() {
         return nrOfSeats;
     }
@@ -131,7 +109,7 @@ public class PassengerPlane extends AirPlane {
             seats.put(i, seat);
             
             if(i < nrOfSeats / 2){
-                seats.get(i).setPrice(firstClassPrice);
+                seats.get(i).setPrice(firstPrice);
                 seats.get(i).setSeatclass(SeatClass.FIRST);
             }
             else{
@@ -152,22 +130,4 @@ public class PassengerPlane extends AirPlane {
         
         return nrOfFreeSeats;
     }
-
-    public double getFirstClassPrice() {
-        return firstClassPrice;
-    }
-
-    public void setFirstClassPrice(double firstClassPrice) {
-        this.firstClassPrice = firstClassPrice;
-    }
-
-    public double getEconomyPrice() {
-        return economyPrice;
-    }
-
-    public void setEconomyPrice(double economyPrice) {
-        this.economyPrice = economyPrice;
-    }
-    
-    
 }

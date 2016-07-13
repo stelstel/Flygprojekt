@@ -9,12 +9,6 @@ public class Customer {
     private String personalNumber;
     private FoodOrder foodorder;
     
-    /**
-     * 
-     * @param firstName First namen
-     * @param surname Surname
-     * @param pnumber Personal ID number
-     */
     //********************* Contructors ****************************************
     public Customer(String firstName, String surname, String pnumber) {
         this.firstName = firstName;
@@ -26,8 +20,16 @@ public class Customer {
         return firstName;
     }
 
+    public String getsurname() {
+        return surname;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setsurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPersonalNumber() {
@@ -44,14 +46,6 @@ public class Customer {
 
     public void setFoodorder(FoodOrder foodorder) {
         this.foodorder = foodorder;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
     
     

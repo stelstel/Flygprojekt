@@ -7,14 +7,11 @@ import java.util.ArrayList;
 //	Adds the Company to the ticket
 //	Sends the ticket to the Plane
 //		plane.putCustomer(Ticket);
-/**
- * 
- * @author Stefan Elmgren
- */
 public class Company {
-    private String name; // Company name
-    private double money;
-    private double profit = 0.3; 
+
+    private String name;
+    private int money;
+    private double profit = 0.3;
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
 
     //******************* Constructors *****************************************
@@ -26,7 +23,7 @@ public class Company {
 
     }
 
-    public void addMoney(double mon) {
+    public void addMoney(int mon) {
         this.money += mon;
     }
 
@@ -58,7 +55,7 @@ public class Company {
         return name;
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     }
 
@@ -70,7 +67,7 @@ public class Company {
         return planes;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 
@@ -82,4 +79,10 @@ public class Company {
         pPlane.putCustomer(ticket);
         
     }
+
+    //Company
+    //	Selects the plane which is presently boarding
+    //	Adds the Company to the ticket
+    //	Sends the ticket to the Plane
+    //		plane.putCustomer(Ticket);
 }
