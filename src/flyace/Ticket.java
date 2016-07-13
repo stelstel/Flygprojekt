@@ -75,4 +75,12 @@ public class Ticket {
     public void setSeatClass(SeatClass seatclass) {
         this.seatclass = seatclass;
     }
+
+    public SeatClass getSeatclass() {
+        return seatclass;
+    }
+
+    public void setSeatclass(SeatClass seatclass) {
+        this.seatclass = seatclass;
+    }
 }

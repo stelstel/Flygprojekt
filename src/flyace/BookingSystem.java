@@ -64,7 +64,7 @@ System.out.println("BookingSystem: Yes a Seat found in ticket");
                     sb2.insert(0, c.getPersonalNumber());
 //                    sb2.insert(8, c.getClass());
                     sb2.insert(16, c.getFirstName());
-                    sb2.insert(36, c.getsurname() +"\n");
+                    sb2.insert(36, c.getSurname() +"\n");
                     sb.append(sb2.toString());
                     sb2.setLength(0);
                     sb2.append(header);
