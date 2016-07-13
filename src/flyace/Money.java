@@ -1,3 +1,4 @@
+package flyace;
 
 //import flyace.SeatClass;
 import flyace.Ticket;
