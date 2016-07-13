@@ -20,7 +20,7 @@ public class Customer {
         return firstName;
     }
 
-    public String getsurname() {
+    public String getSurname() {
         return surname;
     }
 
@@ -28,7 +28,7 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    public void setsurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
