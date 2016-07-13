@@ -10,8 +10,8 @@ public class PassengerPlane extends AirPlane {
 
     private int nrOfSeats;
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
-    private double firstPrice = 5000.00;
-    private double economyPrice = 20000.00;
+    private double firstPrice = 20000.00;
+    private double economyPrice = 5000.00;
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
