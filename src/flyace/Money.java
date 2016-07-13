@@ -25,6 +25,8 @@ public class Money {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+    
+    
 
     // TODO commented out temporarly by Stefan
 //    public double calcSuldo() {
