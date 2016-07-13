@@ -32,7 +32,7 @@ public class CustomerTest {
         System.out.println("getSurname");
         Customer cust = new Customer("Steve", "Smith", "6705130075");
         String expResult = "Smith";
-        String result = cust.getsurname();
+        String result = cust.getSurname();
         assertEquals(expResult, result);
     }
 
@@ -59,8 +59,8 @@ public class CustomerTest {
         String nameAfterSet;
         String surname = "Smith";
         Customer cust = new Customer("", "", "");
-        cust.setsurname(surname);
-        nameAfterSet = cust.getsurname();
+        cust.setSurname(surname);
+        nameAfterSet = cust.getSurname();
         assertEquals("Smith", nameAfterSet);
     }
     

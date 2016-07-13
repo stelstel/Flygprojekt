@@ -22,12 +22,12 @@ public class CompanyTest {
     public void testAddMoney() {
         System.out.println("addMoney");
         Company company = new Company("Acme");
-        int moneyBeforeInput = company.getMoney();
+        double moneyBeforeInput = company.getMoney();
         double profit = company.getProfit();
         int mon = 100;
         company.addMoney(mon);
-        int moneyAfterInput = company.getMoney();
-        assertEquals(moneyAfterInput, (int) (moneyBeforeInput + mon) );
+        double moneyAfterInput = company.getMoney();
+        assertEquals(moneyAfterInput, moneyBeforeInput + mon , 0.01 );
     }
 
     /**
