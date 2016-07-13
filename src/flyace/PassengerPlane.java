@@ -90,7 +90,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     @Override
     void fly() {
         
-        System.out.println(this.getName() + " is refuelling");
+        System.out.println("\n" + this.getName() + " is refuelling");
         this.setStatus(PlaneStatus.REFUELLING);
         try {
             //Thread.sleep(2*60*1000); //Sleep 2 minutes
