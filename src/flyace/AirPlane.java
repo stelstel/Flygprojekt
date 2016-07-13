@@ -27,8 +27,7 @@ public abstract class AirPlane {
     
     /**
      * 
-     * @param customer Customer object
-     * @param seatclass First or economy class 
+     * @param ticket Ticket object
      */
     //abstract void putCustomer(Customer customer, SeatClass seatclass);
     abstract void putCustomer(Ticket ticket);

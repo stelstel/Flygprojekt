@@ -4,17 +4,25 @@ import java.util.LinkedHashMap;
 
 /**
  * @author Stefan Elmgren
- * @version 1.02
+ * @version 1.03
+ * 
  */
 public class PassengerPlane extends AirPlane {
 
-    private int nrOfSeats;
+    private int nrOfSeats; //Number of passenger seats in the plane
+    
+    // Map of objects of Seat
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
-    private double firstPrice = 5000.00;
+    private double firstClassPrice = 5000.00;
     private double economyPrice = 20000.00;
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
+    /**
+     * 
+     * @param name Name of the PassangerPlane
+     * @param numberOfSeats Number of passenger seats in the plane
+     */
     PassengerPlane(String name, int numberOfSeats) {
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
@@ -22,6 +30,10 @@ public class PassengerPlane extends AirPlane {
         freeAllSeats();
     }
 
+    /**
+     * 
+     * @param numberOfSeats Number of passenger seats in the plane
+     */
     PassengerPlane(int numberOfSeats) {
         this("Noname", numberOfSeats);
     }
@@ -29,7 +41,13 @@ public class PassengerPlane extends AirPlane {
     PassengerPlane() {
         this("Noname", 10);
     }
-
+    
+    /**
+     * 
+     * @param ticket Ticket
+     * Put customer in Seat
+     */
+    
     @Override
     public void putCustomer(Ticket ticket){
     //public void putCustomer(Customer customer, SeatClass seatclass) {
@@ -70,7 +88,10 @@ public class PassengerPlane extends AirPlane {
             // All seats occupied
         }
     }
-
+    /**
+     * 
+     * @return int. Number of passenger seats (Free or occupied) 
+     */
     public int getNrOfSeats() {
         return nrOfSeats;
     }
@@ -109,7 +130,7 @@ public class PassengerPlane extends AirPlane {
             seats.put(i, seat);
             
             if(i < nrOfSeats / 2){
-                seats.get(i).setPrice(firstPrice);
+                seats.get(i).setPrice(firstClassPrice);
                 seats.get(i).setSeatclass(SeatClass.FIRST);
             }
             else{
@@ -130,4 +151,22 @@ public class PassengerPlane extends AirPlane {
         
         return nrOfFreeSeats;
     }
+
+    public double getFirstClassPrice() {
+        return firstClassPrice;
+    }
+
+    public void setFirstClassPrice(double firstClassPrice) {
+        this.firstClassPrice = firstClassPrice;
+    }
+
+    public double getEconomyPrice() {
+        return economyPrice;
+    }
+
+    public void setEconomyPrice(double economyPrice) {
+        this.economyPrice = economyPrice;
+    }
+    
+    
 }
