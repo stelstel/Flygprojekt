@@ -94,10 +94,7 @@ public class UI {
                     continue1 = addGroupOfPassengers();
                     break;
                 case 5:
-                    System.out.println(booking.showPlanes());
-System.out.println(booking.showSeats(0));                    
-
-                    getString(1);
+                    showPlanesAndSeats();
                     break;
                 case 6:
                     showFoodMenus();
@@ -326,7 +323,7 @@ System.out.println(booking.showSeats(0));
                     System.out.println(booking.showSaldo2());
                     break;
                 case 2:
-                    System.out.println(booking.showPlanes());
+                    showPlanesAndSeats();
                     break;
                 case 3:
                      // Buy plane to the company
@@ -345,6 +342,14 @@ System.out.println(booking.showSeats(0));
             }
             getString(1);
         }
+    }
+
+    private static void showPlanesAndSeats(){
+        System.out.println(booking.showPlanes());
+        System.out.println("Select number of the plane to see the seats");
+        int i = getSelection();
+        System.out.println(booking.showSeats(i-1));                    
+        getString(1);
     }
     
     
