@@ -54,7 +54,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
 
                 if (seatFound > -1) { //Free seat found
                     //Set seat to occupied
-                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED, ticket);
                     ticket.setSeat(seats.get(seatFound));
                 } 
             } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
@@ -66,7 +66,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
                 }
                 if (seatFound > -1) {
                     //Set seat to occupied
-                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
+                    seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED, ticket); 
                     ticket.setSeat(seats.get(seatFound));
                 } 
             }
