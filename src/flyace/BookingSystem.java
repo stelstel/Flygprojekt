@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 
 
 public class BookingSystem {
-    private static HashMap<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
+    private HashMap<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
 
     private Company company;
     private Ticket ticket;
@@ -168,15 +168,4 @@ sb.append(t.getSeat());
             return start;
         }
     }
-
-    public HashMap<Integer, Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(HashMap<Integer, Ticket> tickets) {
-        this.tickets = tickets;
-    }
-    
-    
-
 }

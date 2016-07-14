@@ -1,6 +1,5 @@
 package flyace;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +14,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     //private int numberOfSeats; //Number of passanger seats in the airplane
     private double firstPrice;
     private double economyPrice;
-    private HashMap<Integer, Ticket> tickets;// = new HashMap<Integer, Ticket>();
-    
+        
     //*********************** Contructors **************************************
     // All contructors use this constructor
     PassengerPlane(String name, int numberOfSeats) {
@@ -167,13 +165,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         }
         
         this.freeAllSeats();
-        BookingSystem booking = new BookingSystem();
-        tickets = new HashMap<Integer, Ticket>(booking.getTickets());
-        
-        for(int i = 0; i < nrOfSeats; i++){ //TODO
-            System.out.println("tickets.get(i).getPlane(): " + tickets.get(i).getPlane());
-        }
-        
+                
         System.out.println(this.getName() + " is inactive");
         this.setStatus(PlaneStatus.INACTIVE);
     }
