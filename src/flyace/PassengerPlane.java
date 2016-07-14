@@ -71,13 +71,13 @@ public class PassengerPlane extends AirPlane implements Runnable{
                 } 
             }
         } 
-
+        
         // If all seats are occupied and planeStatus is INACTIVE then it's time to fly
         PlaneStatus planeStatus = this.getStatus();
         if(planeStatus == PlaneStatus.INACTIVE && getNrOfFreeSeats() == 0){
             setStatus(PlaneStatus.REFUELLING);
             new TimeToFly().checkIfItsTime(ticket.getPlane());
-            new Fly(this.getName());
+            new Fly(this.getName() );
         }
     }
 
