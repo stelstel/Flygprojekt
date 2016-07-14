@@ -3,7 +3,7 @@ package flyace;
 import java.util.ArrayList;
 
 /**
- * 
+ *
  * @author Stefan Elmgren
  * @version 1.01
  */
@@ -16,11 +16,11 @@ public class Company {
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
     int activePlane = 0;
 
-private Money mon = new Money();
+    private Money mon = new Money();
 
-public Money getMoneyObj(){
-    return mon;
-}
+    public Money getMoneyObj() {
+        return mon;
+    }
 
     //******************* Constructors *****************************************
     public Company(String name) {
@@ -33,6 +33,7 @@ public Money getMoneyObj(){
 
     public void addMoney(int mon) {
         this.money += mon;
+        countProfit();
     }
 
     void buyPlane(PassengerPlane plane) {
@@ -86,8 +87,6 @@ public Money getMoneyObj(){
     public void setProfitPart(double profitPart) {
         this.profitPart = profitPart;
     }
-    
-    
 
     public void putCustomer(Ticket ticket) {
         ticket.setCompany(this);
@@ -96,13 +95,17 @@ public Money getMoneyObj(){
         ticket.setPlane(pPlane);
         pPlane.putCustomer(ticket);
     }
-    
-    public void planeOutFlying(){
-	// When a plane is out flying then swap to next plane, if exist
-	if(activePlane < planes.size() -1)
+
+    public void planeOutFlying() {
+        // When a plane is out flying then swap to next plane, if exist
+        if (activePlane < planes.size() - 1) {
             activePlane++;
-	else
+        } else {
             activePlane = 0;
+        }
     }
 
+    private void countProfit() {
+        this.setProfit(this.getMoney() * this.getProfitPart() );
+    }
 }

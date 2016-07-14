@@ -151,6 +151,8 @@ sb.append(t.getSeat());
     public String showSaldo2(){
         String s = "\n\n"+ company.getName() +"\nPresent saldo:\n";
         s = s.concat(String.valueOf(company.getMoneyObj().getSaldo()));
+        s = s.concat("Company profit:\n");
+        s = s.concat(String.valueOf(company.getMoneyObj().getSaldo() * company.getProfitPart()));
         s = s.concat("\n");
         return s;
     }
