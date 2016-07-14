@@ -14,7 +14,12 @@ public class Company {
     private double profit = 0.3;
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
     int activePlane = 0;
-    
+
+private Money mon = new Money();    
+public Money getMoneyObj(){
+    return mon;
+}
+
 
     //******************* Constructors *****************************************
     public Company(String name) {
