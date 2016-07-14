@@ -78,6 +78,10 @@ public class BookingSystem {
     private StringBuilder getTicketContent(Ticket t){
         Customer c = t.getCustomer();
         StringBuilder sb = new StringBuilder();
+        // Show only valid tickets (not invalid tickets from previous flights)
+        if(t.getValid() == false){
+            return sb;
+        }
         sb.append(fixLengthString(c.getPersonalNumber(),5));
         sb.append(fixLengthString(c.getFirstName(),20));
         sb.append(fixLengthString(c.getSurname(),20));
@@ -88,7 +92,7 @@ public class BookingSystem {
         else
             sb.append(fixLengthString("Economy",10));
         sb.append(fixLengthString(String.valueOf(t.getSeat().getPrice()),10));
-        if(t.getSeat().getSeatstatus() == SeatStatus.FREE)
+        if(t.getValid() == false)
             sb.append(fixLengthString("Expired",10));
         else
             sb.append(fixLengthString("Valid",10));
@@ -97,8 +101,6 @@ public class BookingSystem {
         } else {
             sb.append(fixLengthString("No",5));
         }
-sb.append(t.getSeat().getSeatstatus());
-sb.append(t.getSeat());
         sb.append("\n");
         
         return sb;
@@ -112,29 +114,31 @@ sb.append(t.getSeat());
     public String showPlanes(){
         ArrayList<PassengerPlane> planes = company.getPlanes();
         String planeStr = "";
+        int i = 0;
         for(PassengerPlane plane : planes){
-            planeStr = planeStr.concat("    "+ plane.getName() +"\n");
+            i++;
+            planeStr = planeStr.concat("    "+ i +". "+ plane.getName() +"\n");
         }
         return planeStr;
     }
     
-//    public String showSeats(PassengerPlane plane){
     public String showSeats(int planeIndex){
         ArrayList<PassengerPlane> planes = company.getPlanes();
         if(planeIndex >= planes.size()){
             return "";
         }
         PassengerPlane plane = planes.get(planeIndex);
-        LinkedHashMap<Integer, Seat> seats = plane.getSeats();;
+        LinkedHashMap<Integer, Seat> seats = plane.getSeats();
         Seat seat;
 
-        StringBuilder sb = new StringBuilder("Seats:\n    Num.    Class    Status\n");
+        StringBuilder sb = new StringBuilder("Seats in "+ plane.getName() +":\n    Seat Class    Status\n");
         
         for(int i=0; i < seats.size(); i++){
             seat = seats.get(i);
+            sb.append("    ");
             sb.append(fixLengthString(String.valueOf(seat.getSeatNumber()),5));
-            sb.append(fixLengthString(String.valueOf(seat.getSeatclass()),20));
-            sb.append(fixLengthString(String.valueOf(seat.getSeatstatus()),20));
+            sb.append(fixLengthString(String.valueOf(seat.getSeatclass()),12));
+            sb.append(fixLengthString(String.valueOf(seat.getSeatstatus()),10));
             sb.append("\n");
         }
         return sb.toString();
