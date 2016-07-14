@@ -75,7 +75,9 @@ public class PassengerPlane extends AirPlane implements Runnable{
         // If all seats are occupied and planeStatus is INACTIVE then it's time to fly
         PlaneStatus planeStatus = this.getStatus();
         if(planeStatus == PlaneStatus.INACTIVE && getNrOfFreeSeats() == 0){
+            // Change status, report to Company that this plane is leaving and then fly
             setStatus(PlaneStatus.REFUELLING);
+            ticket.getCompany().planeOutFlying();
             new TimeToFly().checkIfItsTime(ticket.getPlane());
             new Fly(this.getName() );
         }
@@ -84,6 +86,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     public int getNrOfSeats() {
         return nrOfSeats;
     }
+ 
     
     public LinkedHashMap<Integer, Seat> getSeats() {
         return seats;

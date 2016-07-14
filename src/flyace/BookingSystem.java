@@ -3,6 +3,8 @@ package flyace;
 //Test Commit
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 
 public class BookingSystem {
     private HashMap<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
@@ -95,7 +97,7 @@ public class BookingSystem {
         } else {
             sb.append(fixLengthString("No",5));
         }
-        //TODO: Add if FoodOrderExist or not
+//sb.append(t.getSeat().getSeatstatus());
         sb.append("\n");
         return sb;
     }
@@ -114,6 +116,28 @@ public class BookingSystem {
         return planeStr;
     }
     
+//    public String showSeats(PassengerPlane plane){
+    public String showSeats(int planeIndex){
+        ArrayList<PassengerPlane> planes = company.getPlanes();
+        if(planeIndex >= planes.size()){
+            return "";
+        }
+        PassengerPlane plane = planes.get(planeIndex);
+        LinkedHashMap<Integer, Seat> seats = plane.getSeats();;
+        Seat seat;
+
+        StringBuilder sb = new StringBuilder("Seats:\n    Num.    Class    Status\n");
+        
+        for(int i=0; i < seats.size(); i++){
+            seat = seats.get(i);
+            sb.append(fixLengthString(String.valueOf(seat.getSeatNumber()),5));
+            sb.append(fixLengthString(String.valueOf(seat.getSeatclass()),20));
+            sb.append(fixLengthString(String.valueOf(seat.getSeatstatus()),20));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
     public void income(Ticket t){
         
     }
