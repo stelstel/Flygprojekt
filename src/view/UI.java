@@ -323,8 +323,7 @@ System.out.println(booking.showSeats(0));
             int selection = getSelection();
             switch (selection) {
                 case 1:
-                    //TODO:
-                    System.out.println("Sorry, not implemented yet");
+                    System.out.println(booking.showSaldo2());
                     break;
                 case 2:
                     System.out.println(booking.showPlanes());
