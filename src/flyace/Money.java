@@ -7,8 +7,7 @@ public class Money {
     private double saldo;
     private double income;
     private double profit;
-    
-    
+        
     Ticket ticket;
     SeatClass seatClass;
     SeatStatus seatStatus;
@@ -16,10 +15,18 @@ public class Money {
     FoodOrder foodOrder;
     PassengerPlane pPlane;
     
+    public void addToSaldo(Double moneyToAdd){
+        saldo += moneyToAdd;
+    }
+    
     public double getSaldo() {
-        saldo = foodOrder.getTotalCost() + ticket.getPrice();
         return saldo;
     }
+    
+//    public double getSaldo() {
+//        saldo = foodOrder.getTotalCost() + ticket.getPrice();
+//        return saldo;
+//    }
     
     public void setSaldo(double saldo) {
         this.saldo = saldo;

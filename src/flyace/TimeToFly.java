@@ -24,19 +24,19 @@ public final class TimeToFly implements Runnable{
         Thread flyThread;
         this.pPlane = pPlane;
         if( pPlane.getNrOfFreeSeats() == 0){
-          
+            Money money = new Money();
+            double ticketMoneyAllPlane = 0;
             for(int i = 0; i < 10; i++){ // TODO remove?
-                System.out.println("PRIS PASSAGERARE " + i + ":" + pPlane.getSeats().get(0).getPrice() );
+                System.out.println("PRIS PASSAGERARE " + i + ":" + pPlane.getSeats().get(i).getPrice() );
+                ticketMoneyAllPlane += pPlane.getSeats().get(i).getPrice();
             }
+            money.addToSaldo(ticketMoneyAllPlane);
+            System.out.println("money.getSaldo() :" + money.getSaldo() ); //TODO tabort
+            money.getSaldo();
             
-//            for(int i = 0; i < 10; i++){ // TODO remove?
-//                System.out.println("PRIS PASSAGERARE " + i + ":" + pPlane.getSeats().get(0).getPrice() );
-//            }
-
+            
             flyThread = new Thread(this);
             flyThread.start();
-            
-            return;
         }
     }
     	@Override
