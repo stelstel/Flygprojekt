@@ -153,6 +153,8 @@ public class PassengerPlane extends AirPlane implements Runnable{
             Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        this.freeAllSeats();
+        
         System.out.println(this.getName() + " is inactive");
         this.setStatus(PlaneStatus.INACTIVE);
     }
