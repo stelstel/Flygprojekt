@@ -10,7 +10,8 @@ public class Seat {
     int seatNumber;
     SeatStatus seatstatus;
     double price;
- 
+    private Ticket ticket;
+    
     // Put customer in seat
     void assignCustomer(){
         this.seatstatus = SeatStatus.OCCUPIED;
@@ -43,6 +44,15 @@ public class Seat {
 
     public void setSeatstatus(SeatStatus seatstatus) {
         this.seatstatus = seatstatus;
+        // If seat is FREE again after flight, then indicate the ticket as invalid
+        if(seatstatus == SeatStatus.FREE){
+            ticket.setValid(false);
+        }
+    }
+
+    public void setSeatstatus(SeatStatus seatstatus, Ticket ticket) {
+        this.seatstatus = seatstatus;
+        this.ticket = ticket;
     }
 
     public double getPrice() {
