@@ -56,9 +56,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i andra klass
-                }
+                } 
             } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
                     if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
@@ -70,13 +68,9 @@ public class PassengerPlane extends AirPlane implements Runnable{
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i första klass
-                }
+                } 
             }
-        } else {
-            // All seats occupied
-        }
+        } 
 
         // If all seats are occupied and planeStatus is INACTIVE then it's time to fly
         PlaneStatus planeStatus = this.getStatus();
