@@ -146,10 +146,18 @@ public class BookingSystem {
         
     }
     public void income(food.FoodOrder f){
-        
+        double totalCost = (double)f.getTotalCost();
+        company.getMoneyObj().addToSaldo(totalCost);
+    }
+
+    public String showSaldo2(){
+        String s = "\n\n"+ company.getName() +"\nCompany saldo:\n";
+        s = s.concat(String.valueOf(company.getMoneyObj().getSaldo()));
+        s = s.concat("\n");
+        return s;
     }
     
-
+    
     private String fixLengthString(String start, int length) {
         if (start.length() >= length) {
             return start.substring(0, length);
