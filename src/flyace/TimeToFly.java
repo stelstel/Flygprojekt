@@ -17,6 +17,8 @@ public final class TimeToFly {
     static public void checkIfItsTime(PassengerPlane pPlane){
         if( pPlane.getNrOfFreeSeats() == 0){
             pPlane.fly();
+            System.out.println("PRIS PASSAGERARE 1: " + pPlane.getSeats().get(0).getPrice() );
+            
         }
     }
 }
