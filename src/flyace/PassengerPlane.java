@@ -6,12 +6,13 @@ import java.util.logging.Logger;
 
 /**
  * @author Stefan Elmgren
- * @version 1.02
+ * @version 1.03
  */
 public class PassengerPlane extends AirPlane implements Runnable{
 
     private int nrOfSeats;
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
+    private int numberOfSeats; //Number of passanger seats in the airplane
     private double firstPrice = 20000.00;
     private double economyPrice = 5000.00;
     
@@ -32,7 +33,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         this("Noname", 10);
     }
 
-    @Override
+    //@Override
     public void putCustomer(Ticket ticket){
     // TODO Check if any free seats less, if not start the flight
         int seatFound = -1;
@@ -76,7 +77,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     public int getNrOfSeats() {
         return nrOfSeats;
     }
-
+    
     public LinkedHashMap<Integer, Seat> getSeats() {
         return seats;
     }
@@ -84,7 +85,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     public void setNrOfSeats(int nrOfSeats) {
         this.nrOfSeats = nrOfSeats;
     }
-
+    
     @Override
     void fly() {
         /*
@@ -159,7 +160,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         this.setStatus(PlaneStatus.INACTIVE);
     }
 
-    @Override
+    //@Override
     // Remove one seat from the seats
     //void freeSeat(Customer customer) {
     void freeOneSeat(Ticket ticket) { 
@@ -171,7 +172,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         }
     }
 
-    @Override
+    //@Override
     void freeAllSeats() {
         for(int i = 0; i < nrOfSeats; i++ ){
             Seat seat = new Seat();
