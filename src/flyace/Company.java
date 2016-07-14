@@ -13,6 +13,8 @@ public class Company {
     private int money;
     private double profit = 0.3;
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
+    int activePlane = 0;
+    
 
     //******************* Constructors *****************************************
     public Company(String name) {
@@ -74,8 +76,17 @@ public class Company {
     public void putCustomer(Ticket ticket) {
         ticket.setCompany(this);
         //TODO now selects first plane. Maybe needed to select other plane
-        PassengerPlane pPlane = this.getPlanes().get(0);
+        PassengerPlane pPlane = this.getPlanes().get(activePlane);
         ticket.setPlane(pPlane);
         pPlane.putCustomer(ticket);
     }
+    
+    public void planeOutFlying(){
+	// When a plane is out flying then swap to next plane, if exist
+	if(activePlane < planes.size() -1)
+            activePlane++;
+	else
+            activePlane = 0;
+    }
+
 }
