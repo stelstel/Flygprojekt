@@ -1,5 +1,6 @@
 package flyace;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,11 +10,12 @@ import java.util.logging.Logger;
  * @version 1.04
  */
 public class PassengerPlane extends AirPlane implements Runnable{
-    private int nrOfSeats;
+    private int nrOfSeats; //Number of passanger seats in the airplane
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
-    private int numberOfSeats; //Number of passanger seats in the airplane
+    //private int numberOfSeats; //Number of passanger seats in the airplane
     private double firstPrice;
     private double economyPrice;
+    private HashMap<Integer, Ticket> tickets;// = new HashMap<Integer, Ticket>();
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
@@ -29,14 +31,14 @@ public class PassengerPlane extends AirPlane implements Runnable{
 
     PassengerPlane(int numberOfSeats) {
         this("Noname", numberOfSeats);
-        this.economyPrice = 5000.00;
-        this.firstPrice = 20000.00;
+        //this.economyPrice = 5000.00;
+        //this.firstPrice = 20000.00;
     }
 
     PassengerPlane() {
         this("Noname", 10);
-        this.economyPrice = 5000.00;
-        this.firstPrice = 20000.00;
+        //this.economyPrice = 5000.00;
+        //this.firstPrice = 20000.00;
     }
 
     public void putCustomer(Ticket ticket){
@@ -46,7 +48,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         if (getNrOfFreeSeats() > 0) { // Seats available
             if (ticket.getSeatClass() == SeatClass.FIRST) { // First class
                 for (int i = 0; i < 5; i++) {
-                    if (/*seats.isEmpty() || */ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
+                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
@@ -59,7 +61,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
                 } 
             } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
-                    if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
+                    if (seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
                         seatFound = i;
                         break;
                     }
@@ -165,6 +167,12 @@ public class PassengerPlane extends AirPlane implements Runnable{
         }
         
         this.freeAllSeats();
+        BookingSystem booking = new BookingSystem();
+        tickets = new HashMap<Integer, Ticket>(booking.getTickets());
+        
+        for(int i = 0; i < nrOfSeats; i++){ //TODO
+            System.out.println("tickets.get(i).getPlane(): " + tickets.get(i).getPlane());
+        }
         
         System.out.println(this.getName() + " is inactive");
         this.setStatus(PlaneStatus.INACTIVE);

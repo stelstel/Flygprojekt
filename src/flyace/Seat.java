@@ -12,14 +12,14 @@ public class Seat {
     double price;
  
     // Put customer in seat
-    void assignCustomer(){
-        this.seatstatus = SeatStatus.OCCUPIED;
-    }
+    //void assignCustomer(){
+    //    this.seatstatus = SeatStatus.OCCUPIED;
+    //}
     
     // Remove customer from seat
-    void removeCustomer(){
-        this.seatstatus = SeatStatus.FREE;
-    }
+    //void removeCustomer(){
+    //    this.seatstatus = SeatStatus.FREE;
+    //}
 
     public SeatClass getSeatclass() {
         return seatclass;
