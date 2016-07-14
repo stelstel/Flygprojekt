@@ -1,5 +1,6 @@
 package flyace;
 
+import java.util.LinkedHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -108,7 +109,15 @@ public final class TimeToFly implements Runnable{
             Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        pPlane.freeAllSeats();
+
+        // Free all the seats
+        LinkedHashMap<Integer, Seat> seats = pPlane.getSeats();
+        Seat seat;
+        for(int i=0; i < seats.size(); i++){
+            seat = seats.get(i);
+            seat.setSeatstatus(SeatStatus.FREE);
+        }
+
         System.out.println(pPlane.getName() + " is inactive");
         pPlane.setStatus(PlaneStatus.INACTIVE);            
             
