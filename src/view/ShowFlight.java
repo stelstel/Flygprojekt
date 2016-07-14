@@ -118,7 +118,32 @@ public class ShowFlight extends JFrame{
 			
 		if(ballX > 600 && ballY < 700)
 			ballY++;
-			
+
+		if(loopCount == 500)
+			chat[0] = "-May I serve you some food sir";
+		else if(loopCount == 600)	
+			chat[1] = "-Yes please";
+		else if(loopCount == 700)	
+			chat[2] = "-Enjoy your meal sir";
+		else if(loopCount == 800)	
+			chat[3] = "-Yummy yummy!";
+		else if(loopCount == 1300)	
+			chat[4] = "-You have to fasten your seatbelt sir, we are about to land";
+		else if(loopCount == 1400)	
+			chat[5] = "-But I have to go to the toilet";
+		else if(loopCount == 1500)	
+			chat[6] = "-Sorry, but that is not possible right now";
+		else if(loopCount == 1600)	
+			chat[7] = "-But this is urgent!!!";
+		else if(loopCount == 1700)	
+			chat[8] = "-SIT!!!";
+		else if(loopCount == 1800)	
+			chat[9] = "-shit...";
+		else if(loopCount == 2000)	
+			chat[10] = "-Have a nice day sir";
+		else if(loopCount == 2100)	
+			chat[11] = "-Fuck off";
+                
 		
 		loopCount++;
 	}
@@ -150,6 +175,22 @@ public class ShowFlight extends JFrame{
 			bbg.fillOval(ballX, ballY, 20, 20);
 		}
 
+		// Chat
+		bbg.setColor(Color.DARK_GRAY);	
+		Font font2 = new Font("Serif", Font.PLAIN, 32);
+		bbg.setFont(font2);
+		bbg.drawString(chat[0], 80, 260);
+		bbg.drawString(chat[1], 80, 300);
+		bbg.drawString(chat[2], 80, 340);
+		bbg.drawString(chat[3], 80, 380);
+		bbg.drawString(chat[4], 80, 420);
+		bbg.drawString(chat[5], 80, 460);
+		bbg.drawString(chat[6], 80, 500);
+		bbg.drawString(chat[7], 80, 540);
+		bbg.drawString(chat[8], 80, 580);
+		bbg.drawString(chat[9], 80, 620);
+		bbg.drawString(chat[10], 80, 660);
+		bbg.drawString(chat[11], 80, 700);
 		
 		g.drawImage(backBuffer, insets.left, insets.top, this);
 
