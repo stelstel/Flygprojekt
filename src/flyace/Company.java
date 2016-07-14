@@ -11,7 +11,8 @@ public class Company {
 
     private String name;
     private int money;
-    private double profit = 0.3;
+    private double profit;
+    private double profitPart = 0.30;
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
     int activePlane = 0;
 
@@ -20,7 +21,6 @@ private Money mon = new Money();
 public Money getMoneyObj(){
     return mon;
 }
-
 
     //******************* Constructors *****************************************
     public Company(String name) {
@@ -78,6 +78,16 @@ public Money getMoneyObj(){
     public void setMoney(int money) {
         this.money = money;
     }
+
+    public double getProfitPart() {
+        return profitPart;
+    }
+
+    public void setProfitPart(double profitPart) {
+        this.profitPart = profitPart;
+    }
+    
+    
 
     public void putCustomer(Ticket ticket) {
         ticket.setCompany(this);
