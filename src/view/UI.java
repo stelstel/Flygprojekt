@@ -95,6 +95,8 @@ public class UI {
                     break;
                 case 5:
                     System.out.println(booking.showPlanes());
+System.out.println(booking.showSeats(0));                    
+
                     getString(1);
                     break;
                 case 6:
