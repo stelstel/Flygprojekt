@@ -13,7 +13,7 @@ public class BookingSystem {
     private int uniqueCustomerId;
 
     public BookingSystem() {
-        this.company = new Company();
+        this.company = new Company("Java Airlines");
         uniqueCustomerId = 1;
         // Buy one initial plane to the company
         plane = new PassengerPlane("Boeing747", 10);
@@ -64,9 +64,11 @@ public class BookingSystem {
     }
 
     private StringBuilder getTicketHeader(){
+
         String header =  "Num. Fist name           Last name           Airplane            Seat Class     Price     Status    FoodOrder\n";
         String header2 = "---- ---------           ---------           --------            ---- -----     -----     ------    ---------\n";
-        StringBuilder sb = new StringBuilder(header);
+        StringBuilder sb = new StringBuilder("\n\nFlight Tickets\n"+ company.getName() +"\n\n");
+        sb.append(header);
         sb.append(header2);
         return sb;
     }
