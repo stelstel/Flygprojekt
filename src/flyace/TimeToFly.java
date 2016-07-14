@@ -21,6 +21,7 @@ public final class TimeToFly implements Runnable{
     
     public void checkIfItsTime(PassengerPlane pPlane){
 
+        Thread flyThread;
         this.pPlane = pPlane;
         if( pPlane.getNrOfFreeSeats() == 0){
 //            pPlane.fly();
@@ -28,10 +29,11 @@ public final class TimeToFly implements Runnable{
 //            for(int i = 0; i < 10; i++){ // TODO remove?
 //                System.out.println("PRIS PASSAGERARE " + i + ":" + pPlane.getSeats().get(0).getPrice() );
 //            }
-            Thread flyThread = new Thread(this);
+
+            flyThread = new Thread(this);
             flyThread.start();
             
-            
+            return;
         }
     }
     	@Override

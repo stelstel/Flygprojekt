@@ -113,6 +113,14 @@ public class BookingSystem {
         }
         return planeStr;
     }
+    
+    public void income(Ticket t){
+        
+    }
+    public void income(food.FoodOrder f){
+        
+    }
+    
 
     private String fixLengthString(String start, int length) {
         if (start.length() >= length) {

@@ -167,6 +167,7 @@ public class UI {
                             return true;
                         }
                         System.out.println("A ticket has been created successfully");
+                        booking.income(ticket);
                         orderFood(ticket, seatClass);
                         return true;
                     default:
@@ -177,6 +178,7 @@ public class UI {
 
             } else {
                 System.out.println("A ticket has been created successfully");
+                booking.income(ticket);
             }
             getString(1);
         } catch (EmptyStringException e) {
@@ -223,6 +225,7 @@ public class UI {
         if (selection == 1) {
             System.out.println("Your order, " + foodOrder.getTotalCost() + "kr is payed. Thank you!");
             foodOrder.pay();
+            booking.income(foodOrder);
         } else {
             System.out.println("Thanks for nothing you cheap bastard");
         }
@@ -259,6 +262,7 @@ public class UI {
                 System.out.println("A ticket has been created successfully");
 //                // TODO Kent, check if this is the correct line for this line of code!
 //                TimeToFly.checkIfItsTime(ticket.getPlane()); 
+                  booking.income(ticket);
             }
         }
         getString(1);
