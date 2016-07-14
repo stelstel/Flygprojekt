@@ -99,6 +99,10 @@ public class BookingSystem {
         }
 //sb.append(t.getSeat().getSeatstatus());
         sb.append("\n");
+
+//t.getCompany().getMoneyObj().addToSaldo(Double.NaN);
+        
+        
         return sb;
     }
 
