@@ -257,8 +257,8 @@ public class UI {
                 //TODO: Check if idle seats available for the other class
             } else {
                 System.out.println("A ticket has been created successfully");
-                // TODO Kent, check if this is the correct line for this line of code!
-                TimeToFly.checkIfItsTime(ticket.getPlane()); 
+//                // TODO Kent, check if this is the correct line for this line of code!
+//                TimeToFly.checkIfItsTime(ticket.getPlane()); 
             }
         }
         getString(1);
