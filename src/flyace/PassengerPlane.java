@@ -71,8 +71,6 @@ public class PassengerPlane extends AirPlane implements Runnable{
         } else {
             // All seats occupied
         }
-        
-        //TimeToFly.checkIfItsTime(ticket.getPlane());
     }
 
     public int getNrOfSeats() {
@@ -89,8 +87,16 @@ public class PassengerPlane extends AirPlane implements Runnable{
 
     @Override
     void fly() {
-        
-        System.out.println("\n" + this.getName() + " is refuelling");
+        /*
+        REFUELLING, 2  minuter
+        BOARDING,   8 minuter 
+        TAKEOFF,    1 sekund
+        INFLIGHT,   35 sekunder
+        LANDING,    1 sekund
+        DEBARKING,   10 minuter
+        INACTIVE    ?
+        */
+        System.out.println(this.getName() + " is refuelling");
         this.setStatus(PlaneStatus.REFUELLING);
         try {
             //Thread.sleep(2*60*1000); //Sleep 2 minutes
@@ -139,7 +145,6 @@ public class PassengerPlane extends AirPlane implements Runnable{
         
         System.out.println(this.getName() + " is debarking");
         this.setStatus(PlaneStatus.DEBARKING);
-        this.freeAllSeats(); // All seats are set to free
         
         try {
             //Thread.sleep(10*60*1000); //Sleep 10 minutes
