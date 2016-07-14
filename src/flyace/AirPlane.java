@@ -3,7 +3,7 @@ import java.util.LinkedHashMap;
 
 /**
  * @author Stefan Elmgren
- * @version 1.32
+ * @version 1.33
  * Superclass
 */
 
