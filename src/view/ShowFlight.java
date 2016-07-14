@@ -110,7 +110,7 @@ public class ShowFlight extends JFrame{
 			else
 				flightInfo = "";
 		}	
-		else if(loopCount < 2400)
+		else if(loopCount < 2200)
 			flightInfo = "Ladies and gentlemen, welcome to Java Airport";
 		else {
 			isRunning = false;
@@ -152,6 +152,7 @@ public class ShowFlight extends JFrame{
 
 		
 		g.drawImage(backBuffer, insets.left, insets.top, this);
+
 	}
 
 }
