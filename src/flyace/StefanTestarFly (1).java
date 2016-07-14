@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * @author Stefan Elmgren
  */
 // Testing the fly method of PassengerPlane to get 3 planes in 3 threads flying
 public class StefanTestarFly {
