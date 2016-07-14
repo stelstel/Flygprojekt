@@ -107,67 +107,67 @@ public class PassengerPlane extends AirPlane implements Runnable{
         DEBARKING,   10 minuter
         INACTIVE    ?
         */
-        System.out.println(this.getName() + " is refuelling");
-        this.setStatus(PlaneStatus.REFUELLING);
-        try {
-            //Thread.sleep(2*60*1000); //Sleep 2 minutes
-            Thread.sleep(1000); // TODO change
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println(this.getName() + " is boarding");
-        this.setStatus(PlaneStatus.BOARDING);
-        
-        try {
-            //Thread.sleep(8 * 60 * 1_000); // Sleep 8 minutes
-            Thread.sleep(1000); // TODO change
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println(this.getName() + " is taking off");
-        this.setStatus(PlaneStatus.TAKEOFF);
-        
-        try {
-            Thread.sleep(1000); //Sleep 1 second
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println(this.getName() + " is in flight");
-        this.setStatus(PlaneStatus.INFLIGHT);
-        
-        try {
-            // Thread.sleep(35 * 1000); //Sleep 37 seconds
-            Thread.sleep(5 * 1000); // TODO change
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println(this.getName() + " is landing");
-        this.setStatus(PlaneStatus.LANDING);
-        
-        try {
-            Thread.sleep(1000); //Sleep 1 second
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        System.out.println(this.getName() + " is debarking");
-        this.setStatus(PlaneStatus.DEBARKING);
-        
-        try {
-            //Thread.sleep(10*60*1000); //Sleep 10 minutes
-            Thread.sleep(1000); // TODO change
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        this.freeAllSeats();
-                
-        System.out.println(this.getName() + " is inactive");
-        this.setStatus(PlaneStatus.INACTIVE);
+//        System.out.println(this.getName() + " is refuelling");
+//        this.setStatus(PlaneStatus.REFUELLING);
+//        try {
+//            //Thread.sleep(2*60*1000); //Sleep 2 minutes
+//            Thread.sleep(1000); // TODO change
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        System.out.println(this.getName() + " is boarding");
+//        this.setStatus(PlaneStatus.BOARDING);
+//        
+//        try {
+//            //Thread.sleep(8 * 60 * 1_000); // Sleep 8 minutes
+//            Thread.sleep(1000); // TODO change
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        System.out.println(this.getName() + " is taking off");
+//        this.setStatus(PlaneStatus.TAKEOFF);
+//        
+//        try {
+//            Thread.sleep(1000); //Sleep 1 second
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        System.out.println(this.getName() + " is in flight");
+//        this.setStatus(PlaneStatus.INFLIGHT);
+//        
+//        try {
+//            // Thread.sleep(35 * 1000); //Sleep 37 seconds
+//            Thread.sleep(5 * 1000); // TODO change
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        System.out.println(this.getName() + " is landing");
+//        this.setStatus(PlaneStatus.LANDING);
+//        
+//        try {
+//            Thread.sleep(1000); //Sleep 1 second
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        System.out.println(this.getName() + " is debarking");
+//        this.setStatus(PlaneStatus.DEBARKING);
+//        
+//        try {
+//            //Thread.sleep(10*60*1000); //Sleep 10 minutes
+//            Thread.sleep(1000); // TODO change
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        this.freeAllSeats();
+//                
+//        System.out.println(this.getName() + " is inactive");
+//        this.setStatus(PlaneStatus.INACTIVE);
     }
 
     // Remove one seat from the seats
