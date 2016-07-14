@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 public final class TimeToFly implements Runnable{
     
     /**
-     *
      * @param pPlane
      *
      * Checks if its time to fly
@@ -34,7 +33,9 @@ public final class TimeToFly implements Runnable{
                 ticketMoneyAllPlane += pPlane.getSeats().get(i).getPrice();
             }
             money.addToSaldo(ticketMoneyAllPlane);
-            company.addMoney((int)money.getSaldo()); //Add money to company
+            
+            //Add money to company. Only the profit gets added, the rest just dissapears
+            company.addMoney((int) (money.getSaldo() * company.getProfitPart() ) ); 
             
             System.out.println("money.getSaldo() :" + money.getSaldo() ); //TODO tabort
             System.out.println("company.getMoney() :" + company.getMoney()); //TODO tabort
