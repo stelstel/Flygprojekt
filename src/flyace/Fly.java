@@ -18,7 +18,7 @@ public class Fly implements Runnable {
 
 		ShowFlight flight = new ShowFlight(planeName);
 		flight.runLoop();
-		System.exit(0);
+//		System.exit(0);
 		
 	}
 }
