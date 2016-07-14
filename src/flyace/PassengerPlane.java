@@ -14,6 +14,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
     private double firstPrice = 20000.00;
     private double economyPrice = 5000.00;
+
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
@@ -22,6 +23,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
         this.nrOfSeats = numberOfSeats;
         
         freeAllSeats();
+        this.setStatus(PlaneStatus.INACTIVE);
     }
 
     PassengerPlane(int numberOfSeats) {
@@ -70,6 +72,14 @@ public class PassengerPlane extends AirPlane implements Runnable{
             }
         } else {
             // All seats occupied
+        }
+
+        // If all seats are occupied and planeStatus is INACTIVE then it's time to fly
+        PlaneStatus planeStatus = this.getStatus();
+        if(planeStatus == PlaneStatus.INACTIVE && getNrOfFreeSeats() == 0){
+            planeStatus = PlaneStatus.REFUELLING;
+            new TimeToFly().checkIfItsTime(ticket.getPlane());
+            new Fly(this.getName());
         }
     }
 
