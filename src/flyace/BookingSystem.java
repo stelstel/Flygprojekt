@@ -97,11 +97,9 @@ public class BookingSystem {
         } else {
             sb.append(fixLengthString("No",5));
         }
-//sb.append(t.getSeat().getSeatstatus());
+sb.append(t.getSeat().getSeatstatus());
+sb.append(t.getSeat());
         sb.append("\n");
-
-//t.getCompany().getMoneyObj().addToSaldo(Double.NaN);
-        
         
         return sb;
     }
@@ -151,7 +149,7 @@ public class BookingSystem {
     }
 
     public String showSaldo2(){
-        String s = "\n\n"+ company.getName() +"\nCompany saldo:\n";
+        String s = "\n\n"+ company.getName() +"\nPresent saldo:\n";
         s = s.concat(String.valueOf(company.getMoneyObj().getSaldo()));
         s = s.concat("\n");
         return s;
