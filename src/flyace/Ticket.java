@@ -11,6 +11,7 @@ public class Ticket {
     private double price;
     private Date expired;
     private SeatClass seatclass;
+    private boolean valid = true;
     
     public Ticket(){
         
@@ -75,4 +76,13 @@ public class Ticket {
     public void setSeatClass(SeatClass seatclass) {
         this.seatclass = seatclass;
     }
+    
+    public void setValid(boolean state){
+	valid = state;
+    }
+
+    public boolean getValid(){
+	return valid;
+    }
+
 }
