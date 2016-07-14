@@ -32,7 +32,7 @@ public final class TimeToFly implements Runnable{
             for(int i = 0; i < 10; i++){ 
                 ticketMoneyAllPlane += pPlane.getSeats().get(i).getPrice();
             }
-            /Add money to company. Only the profit gets added, the rest just dissapears
+            //Add money to company. Only the profit gets added, the rest just dissapears
             money.addToSaldo(ticketMoneyAllPlane * company.getProfitPart());
                         
             flyThread = new Thread(this);
