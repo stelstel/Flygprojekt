@@ -27,7 +27,8 @@ public final class TimeToFly implements Runnable{
         if( pPlane.getNrOfFreeSeats() == 0){
             Money money = new Money();
             double ticketMoneyAllPlane = 0;
-            //double foodMoneyAllPlane = 0;
+            
+            
             
             // Add ticket money for all passengers to saldo
             for(int i = 0; i < 10; i++){ 
