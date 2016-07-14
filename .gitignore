@@ -4,3 +4,4 @@ nbbuild/
 nbdist/
 nbactions.xml
 .nb-gradle/
+/dist/
