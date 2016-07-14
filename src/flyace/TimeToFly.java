@@ -19,26 +19,25 @@ public final class TimeToFly implements Runnable{
      */
     PassengerPlane pPlane;
     
-    public void checkIfItsTime(PassengerPlane pPlane){
+    public void checkIfItsTime(PassengerPlane pPlane, Company company){
 
         Thread flyThread;
         this.pPlane = pPlane;
         
         if( pPlane.getNrOfFreeSeats() == 0){
-            Money money = new Money();
+                        
+            Money money = company.getMoneyObj();
             double ticketMoneyAllPlane = 0;
-            
-            
             
             // Add ticket money for all passengers to saldo
             for(int i = 0; i < 10; i++){ 
                 ticketMoneyAllPlane += pPlane.getSeats().get(i).getPrice();
             }
             money.addToSaldo(ticketMoneyAllPlane);
+            company.addMoney((int)money.getSaldo()); //Add money to company
             
             System.out.println("money.getSaldo() :" + money.getSaldo() ); //TODO tabort
-            
-            
+            System.out.println("company.getMoney() :" + company.getMoney()); //TODO tabort
             
             flyThread = new Thread(this);
             flyThread.start();

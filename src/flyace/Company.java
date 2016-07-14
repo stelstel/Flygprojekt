@@ -15,7 +15,8 @@ public class Company {
     private ArrayList<PassengerPlane> planes = new ArrayList<PassengerPlane>();
     int activePlane = 0;
 
-private Money mon = new Money();    
+private Money mon = new Money();
+
 public Money getMoneyObj(){
     return mon;
 }

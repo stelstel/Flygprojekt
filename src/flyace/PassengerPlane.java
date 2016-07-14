@@ -78,7 +78,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
             // Change status, report to Company that this plane is leaving and then fly
             setStatus(PlaneStatus.REFUELLING);
             ticket.getCompany().planeOutFlying();
-            new TimeToFly().checkIfItsTime(ticket.getPlane());
+            new TimeToFly().checkIfItsTime(ticket.getPlane(), ticket.getCompany());
             new Fly(this.getName() );
         }
     }
