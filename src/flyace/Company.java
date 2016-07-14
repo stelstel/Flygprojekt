@@ -2,11 +2,11 @@ package flyace;
 
 import java.util.ArrayList;
 
-//Company
-//	Selects the plane which is presently boarding
-//	Adds the Company to the ticket
-//	Sends the ticket to the Plane
-//		plane.putCustomer(Ticket);
+/**
+ * 
+ * @author Stefan Elmgren
+ * @version 1.01
+ */
 public class Company {
 
     private String name;
@@ -77,12 +77,5 @@ public class Company {
         PassengerPlane pPlane = this.getPlanes().get(0);
         ticket.setPlane(pPlane);
         pPlane.putCustomer(ticket);
-        
     }
-
-    //Company
-    //	Selects the plane which is presently boarding
-    //	Adds the Company to the ticket
-    //	Sends the ticket to the Plane
-    //		plane.putCustomer(Ticket);
 }

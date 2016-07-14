@@ -6,15 +6,15 @@ import java.util.logging.Logger;
 /**
  *
  * @author Stefan Elmgren
- * @version 1.00
- * Checks if all seats are occupied. If thats the case starts the flight
+ * @version 1.01 Checks if all seats are occupied. If thats the case starts the
+ * flight
  */
 public final class TimeToFly implements Runnable{
     
     /**
-     * 
-     * @param pPlane 
-     * 
+     *
+     * @param pPlane
+     *
      * Checks if its time to fly
      */
     PassengerPlane pPlane;

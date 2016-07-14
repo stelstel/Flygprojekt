@@ -11,7 +11,10 @@ public class Money {
     
     Ticket ticket;
     SeatClass seatClass;
+    SeatStatus seatStatus;
+    Seat seat;
     FoodOrder foodOrder;
+    PassengerPlane pPlane;
     
     public double getSaldo() {
         saldo = foodOrder.getTotalCost() + ticket.getPrice();
@@ -23,6 +26,8 @@ public class Money {
     }
     
     public double getIncome() {
+        // Price of the tickets + price of food items of all passengers
+        income = getFoodPrice() + getTicketPrice();
         return income;
     }
     
@@ -30,8 +35,33 @@ public class Money {
         this.income = income;
     }
     
-    public double getProfit(double profit) {
+    public double getProfit() {
         profit = 0.3 * income;
         return profit;
+    }
+    
+    public void setProfit(double profit) {
+        this.profit = profit;
+    }
+    
+    public double getTicketPrice() {
+        int nrOfOccupiedSeats = 0;
+        int nrOfSeats = ticket.getPlane().getNrOfSeats();
+        double ticketPrice = 0;
+        // Loop through all the seats
+        for (int i = 0; i < nrOfSeats; i++) {
+            if (pPlane.getSeats().get(i).getSeatstatus() == seatStatus.OCCUPIED) {
+                nrOfOccupiedSeats++;
+                // Loop through all the occupied seats
+                for (int j = 0; j < nrOfOccupiedSeats; j++) {
+                    ticketPrice = pPlane.getSeats().get(j).getPrice();
+                }
+            }
+        }
+        return ticketPrice;
+    }
+    
+    public double getFoodPrice() {
+        return ticket.getCustomer().getFoodorder().getTotalCost();
     }
 }
