@@ -6,33 +6,39 @@ import java.util.logging.Logger;
 
 /**
  * @author Stefan Elmgren
- * @version 1.02
+ * @version 1.04
  */
 public class PassengerPlane extends AirPlane implements Runnable{
-
     private int nrOfSeats;
     private LinkedHashMap<Integer, Seat> seats = new LinkedHashMap<Integer, Seat>(nrOfSeats);
-    private double firstPrice = 20000.00;
-    private double economyPrice = 5000.00;
+    private int numberOfSeats; //Number of passanger seats in the airplane
+    private double firstPrice;
+    private double economyPrice;
     
     //*********************** Contructors **************************************
     // All contructors use this constructor
     PassengerPlane(String name, int numberOfSeats) {
+        this.economyPrice = 5000.00;
+        this.firstPrice = 20000.00;
         this.setName(name);
         this.nrOfSeats = numberOfSeats;
         
         freeAllSeats();
+        this.setStatus(PlaneStatus.INACTIVE);
     }
 
     PassengerPlane(int numberOfSeats) {
         this("Noname", numberOfSeats);
+        this.economyPrice = 5000.00;
+        this.firstPrice = 20000.00;
     }
 
     PassengerPlane() {
         this("Noname", 10);
+        this.economyPrice = 5000.00;
+        this.firstPrice = 20000.00;
     }
 
-    @Override
     public void putCustomer(Ticket ticket){
     // TODO Check if any free seats less, if not start the flight
         int seatFound = -1;
@@ -50,9 +56,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED);
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i andra klass
-                }
+                } 
             } else if (ticket.getSeatClass() == SeatClass.ECONOMY) { // Economy class
                 for (int i = 5; i < 10; i++) {
                     if (/*seats.isEmpty() ||*/ seats.get(i).getSeatstatus() == SeatStatus.FREE) { //empty seat found
@@ -64,19 +68,26 @@ public class PassengerPlane extends AirPlane implements Runnable{
                     //Set seat to occupied
                     seats.get(seatFound).setSeatstatus(SeatStatus.OCCUPIED); 
                     ticket.setSeat(seats.get(seatFound));
-                } else {
-                    //erbjud plats i första klass
-                }
+                } 
             }
-        } else {
-            // All seats occupied
+        } 
+        
+        // If all seats are occupied and planeStatus is INACTIVE then it's time to fly
+        PlaneStatus planeStatus = this.getStatus();
+        if(planeStatus == PlaneStatus.INACTIVE && getNrOfFreeSeats() == 0){
+            // Change status, report to Company that this plane is leaving and then fly
+            setStatus(PlaneStatus.REFUELLING);
+            ticket.getCompany().planeOutFlying();
+            new TimeToFly().checkIfItsTime(ticket.getPlane(), ticket.getCompany());
+            new Fly(this.getName() );
         }
     }
 
     public int getNrOfSeats() {
         return nrOfSeats;
     }
-
+ 
+    
     public LinkedHashMap<Integer, Seat> getSeats() {
         return seats;
     }
@@ -84,7 +95,7 @@ public class PassengerPlane extends AirPlane implements Runnable{
     public void setNrOfSeats(int nrOfSeats) {
         this.nrOfSeats = nrOfSeats;
     }
-
+    
     @Override
     void fly() {
         /*
@@ -153,13 +164,13 @@ public class PassengerPlane extends AirPlane implements Runnable{
             Logger.getLogger(PassengerPlane.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        this.freeAllSeats();
+        
         System.out.println(this.getName() + " is inactive");
         this.setStatus(PlaneStatus.INACTIVE);
     }
 
-    @Override
     // Remove one seat from the seats
-    //void freeSeat(Customer customer) {
     void freeOneSeat(Ticket ticket) { 
                
         for (int i = 0; i < nrOfSeats; i++) {
@@ -169,7 +180,6 @@ public class PassengerPlane extends AirPlane implements Runnable{
         }
     }
 
-    @Override
     void freeAllSeats() {
         for(int i = 0; i < nrOfSeats; i++ ){
             Seat seat = new Seat();
@@ -191,7 +201,6 @@ public class PassengerPlane extends AirPlane implements Runnable{
     public int getNrOfFreeSeats(){
         int nrOfFreeSeats = 0;
         for(int i = 0; i < this.nrOfSeats; i++){
-            //if(seats.get(i).getSeatstatus() == SeatStatus.FREE){
             if(seats.get(i).getSeatstatus() == SeatStatus.FREE){
                 nrOfFreeSeats++;
             }

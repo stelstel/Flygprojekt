@@ -49,8 +49,7 @@ public class UI {
                     continue1 = flightMenu();
                     break;
                 case 2:
-                    //TODO:
-                    System.out.println("TODO:");
+                    continue1 = companyMenu();
                     break;
                 case 0:
                     return;
@@ -72,12 +71,10 @@ public class UI {
             System.out.println("2. Show/edit Passenger");
             System.out.println("3. Show all passengers");
             System.out.println("4. Register Group of Passengers");
-            System.out.println("5. Show Planes");
-            System.out.println("6. Show Seats");
-            System.out.println("7. Show Ticktes");
-            System.out.println("8. Food menus");
-            System.out.println("9. Show Food Orders");
-            System.out.println("10. Return to main menu");
+            System.out.println("5. Show Planes and Seats");
+            System.out.println("6. Food menus");
+            System.out.println("7. Show Food Orders");
+            System.out.println("8. Return to main menu");
             System.out.println("0. Avsluta");
             System.out.println("Insert the number of your choice: ");
 
@@ -97,25 +94,19 @@ public class UI {
                     continue1 = addGroupOfPassengers();
                     break;
                 case 5:
-                    //TODO:
-                    System.out.println("TODO:");
+                    System.out.println(booking.showPlanes());
+System.out.println(booking.showSeats(0));                    
+
+                    getString(1);
                     break;
                 case 6:
-                    //TODO:
-                    System.out.println("TODO:");
+                    showFoodMenus();
                     break;
                 case 7:
                     //TODO:
                     System.out.println("TODO:");
                     break;
                 case 8:
-                    showFoodMenus();
-                    break;
-                case 9:
-                    //TODO:
-                    System.out.println("TODO:");
-                    break;
-                case 10:
                     return true;
                 case 0:
                     return false;
@@ -129,8 +120,8 @@ public class UI {
 
     public static boolean newPassenger() {
         // Get all needed parameters
-        String firstName = "";
-        String lastName = "";
+        String firstName;
+        String lastName;
         SeatClass seatClass = SeatClass.ECONOMY;
         try {
             System.out.println("First name: ");
@@ -178,7 +169,8 @@ public class UI {
                             return true;
                         }
                         System.out.println("A ticket has been created successfully");
-                        orderFood(seatClass);
+                        booking.income(ticket);
+                        orderFood(ticket, seatClass);
                         return true;
                     default:
                         System.out.println("OK. Goodbye");
@@ -188,17 +180,18 @@ public class UI {
 
             } else {
                 System.out.println("A ticket has been created successfully");
+                booking.income(ticket);
             }
             getString(1);
         } catch (EmptyStringException e) {
             getString(1);
             return true;
         }
-        orderFood(seatClass);
+        orderFood(ticket, seatClass);
         return true;
     }
 
-    public static boolean orderFood(SeatClass seatClass) {
+    public static boolean orderFood(Ticket ticket, SeatClass seatClass) {
         System.out.println("Order food: ");
         System.out.println("1. Yes");
         System.out.println("2. No");
@@ -234,9 +227,12 @@ public class UI {
         if (selection == 1) {
             System.out.println("Your order, " + foodOrder.getTotalCost() + "kr is payed. Thank you!");
             foodOrder.pay();
+            booking.income(foodOrder);
         } else {
             System.out.println("Thanks for nothing you cheap bastard");
         }
+        if(foodOrder.getTotalCost() > 0)
+            ticket.getCustomer().setFoodorder(foodOrder);
         getString(1);
         return true;
 
@@ -266,8 +262,9 @@ public class UI {
                 //TODO: Check if idle seats available for the other class
             } else {
                 System.out.println("A ticket has been created successfully");
-                // TODO Kent, check if this is the correct line for this line of code!
-                TimeToFly.checkIfItsTime(ticket.getPlane()); 
+//                // TODO Kent, check if this is the correct line for this line of code!
+//                TimeToFly.checkIfItsTime(ticket.getPlane()); 
+                  booking.income(ticket);
             }
         }
         getString(1);
@@ -312,9 +309,50 @@ public class UI {
         }
         getString(1);
         return true;
-
     }
 
+    private static boolean companyMenu() {
+        while(true){
+            System.out.println("\nSelect menu:");
+            System.out.println("1. Show economical status");
+            System.out.println("2. Show airplanes");
+            System.out.println("3. Buy new airplane");
+            System.out.println("4. Return to main menu");
+            System.out.println("0. Avsluta");
+        
+            int selection = getSelection();
+            switch (selection) {
+                case 1:
+                    System.out.println(booking.showSaldo2());
+                    break;
+                case 2:
+                    System.out.println(booking.showPlanes());
+                    break;
+                case 3:
+                     // Buy plane to the company
+                    System.out.println("Enter name of the new airplane");
+                    String planeName = getString();
+                    if(planeName.length() == 0)
+                        planeName = "DC10";
+                    booking.buyPlane(planeName);
+                    break;
+                case 4:
+                    return true;
+                case 5:
+                    return false;
+                default:
+                    return false;
+            }
+            getString(1);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     // Helpers
     public static int getSelection() {
         int selection;
