@@ -1,5 +1,7 @@
 package flyace;
 
+import flyace.Fly;
+import flyace.PassengerPlane;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
