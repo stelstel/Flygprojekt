@@ -320,6 +320,7 @@ public class UI {
             switch (selection) {
                 case 1:
                     System.out.println(booking.showSaldo2());
+                    getString(1);
                     break;
                 case 2:
                     showPlanesAndSeats();
@@ -331,6 +332,7 @@ public class UI {
                     if(planeName.length() == 0)
                         planeName = "DC10";
                     booking.buyPlane(planeName);
+                    getString(1);
                     break;
                 case 4:
                     return true;
@@ -339,7 +341,6 @@ public class UI {
                 default:
                     return false;
             }
-            getString(1);
         }
     }
 
