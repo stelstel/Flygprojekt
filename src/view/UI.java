@@ -6,7 +6,6 @@ import flyace.Customer;
 import flyace.PassengerPlane;
 import flyace.SeatClass;
 import flyace.Ticket;
-import flyace.TimeToFly;
 import food.*;
 
 public class UI {
@@ -204,7 +203,7 @@ public class UI {
         System.out.println("Please select from this menu:");
         FoodOrder foodOrder = new FoodOrder(seatClass);
         System.out.println(foodOrder.showMenu() + "\n Enter your choise: ");
-        int selection = 1;
+        int selection;
         while (true) {
             selection = getSelection();
             if (selection == 0) {
