@@ -24,7 +24,7 @@ public class UI {
         booking = new BookingSystem();
 
         mainMenu();
-
+        System.exit(0);
     }
 
     public static void mainMenu() {
