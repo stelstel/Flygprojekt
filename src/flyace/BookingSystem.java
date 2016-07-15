@@ -9,7 +9,8 @@ import java.util.LinkedHashMap;
 public class BookingSystem {
     private HashMap<Integer, Ticket> tickets = new HashMap<Integer, Ticket>();
 
-    private Company company;
+    private ArrayList<PassengerPlane> planes;
+    private final Company company;
     private Ticket ticket;
     private PassengerPlane plane;
     private int uniqueCustomerId;
@@ -112,7 +113,7 @@ public class BookingSystem {
     }
     
     public String showPlanes(){
-        ArrayList<PassengerPlane> planes = company.getPlanes();
+        planes = company.getPlanes();
         String planeStr = "";
         int i = 0;
         for(PassengerPlane plane : planes){
@@ -123,7 +124,7 @@ public class BookingSystem {
     }
     
     public String showSeats(int planeIndex){
-        ArrayList<PassengerPlane> planes = company.getPlanes();
+        planes = company.getPlanes();
         if(planeIndex >= planes.size()){
             return "";
         }
