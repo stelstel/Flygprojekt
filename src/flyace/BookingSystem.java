@@ -48,7 +48,7 @@ public class BookingSystem {
         Customer c = t.getCustomer();
         StringBuilder sb = new StringBuilder();
         sb.append(getTicketHeader());
-        sb.append(getTicketContent(t));
+        sb.append(getTicketContent(t, true));
         sb.append("\n");
         if(c.getFoodorder() != null){
             sb.append(c.getFoodorder());
@@ -61,7 +61,7 @@ public class BookingSystem {
         sb.append(getTicketHeader());
         for(int i=1; i-1 < tickets.size(); i++){
             ticket = tickets.get(i);
-            sb.append(getTicketContent(ticket));
+            sb.append(getTicketContent(ticket, false));
         }
         return sb.toString();
     }
@@ -76,11 +76,11 @@ public class BookingSystem {
         return sb;
     }
 
-    private StringBuilder getTicketContent(Ticket t){
+    private StringBuilder getTicketContent(Ticket t, boolean showInvalidTickets){
         Customer c = t.getCustomer();
         StringBuilder sb = new StringBuilder();
         // Show only valid tickets (not invalid tickets from previous flights)
-        if(t.getValid() == false){
+        if(showInvalidTickets == false && t.getValid() == false){
             return sb;
         }
         sb.append(fixLengthString(c.getPersonalNumber(),5));
